@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager-Test</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<h2>Part Rate Calculator !!!</h2>
+		<div align="center">
+			<form th:method="'POST'">
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th th:text="'№'" rowspan="2"/>
+							<th th:text="'Номер'" rowspan="2"/>
+							<th th:text="'Маршрут'" colspan="3"/>
+							<th th:text="'Заготовка'" rowspan="2"/>
+						</tr>
+						<tr>
+							<th th:text="Выбор" />
+							<th th:text="Варианты" />
+							<th th:text="Применить" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="part, iterator : ${rateCalculator.partsIds}">
+						
+							<td th:text="${iterator.count}" />
+							
+							<td th:text="${part['value'].number}" />
+
+							<td align="center">
+								<th:block th:unless="${rateCalculator.selectedRoutes[part['key']] == null}">
+									<span th:text="${rateCalculator.selectedRoutes[part['key']].number}" style="color : green"></span>
+								</th:block>
+								<th:block th:if="${rateCalculator.selectedRoutes[part['key']] == null}">
+									<span th:text="'N/A'" style="color : grey"></span>
+								</th:block>
+							</td> 
+							
+							<td align="center">
+								<select th:if="${#lists.size(rateCalculator.routes[part['key']]) > 1}" th:name="'selectRouteId'">
+									<option th:each="route : ${rateCalculator.routes[part['key']]}" 
+											th:text="${route.number}" 
+											th:value="${route.id}" />
+								</select>
+								<span th:text="'-'" th:unless="${#lists.size(rateCalculator.routes[part['key']]) > 1}"></span>
+							</td> 
+							
+							<td align="center">
+								<button th:disabled="!${#lists.size(rateCalculator.routes[part['key']]) > 1}" 
+										th:name="'btnAcceptRoute'"
+										th:value="${part['key']}">Применить</button>
+							</td> 
+							
+							<td>
+								1
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

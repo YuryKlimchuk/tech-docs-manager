@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<nav class="main_menu">
+							<span class="main_menu"><b><i>Элементы спецификации</i></b>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="/specification-element" class="top_menu">Элементы спецификации</a> - </span>
+							<span><a href="/specification-element/assembly" class="top_menu">Сборочные единицы</a> - </span>  
+							<span><b><i>Список для просмотра</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<table style="width:50%">
+				<tr>
+					<th colspan="2" th:text="'Фильтр поиска (в разработке)'" />
+				</tr>
+				<tr>
+					<td>Критерий 1</td>
+					<td>Занчение 1</td>
+				</tr>
+				<tr>
+					<td>Критерий 2</td>
+					<td>Занчение 2</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button style="width: 20%">Найти</button>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			
+			
+			<form th:method="'POST'">
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Статус'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${dtos}">
+							<td th:text="${iterator.count}"/>
+							<td>
+								<a th:href="@{/specification-element/assembly/show-list/{id}(id=${item.id})}" target="_blank"><span th:text="${item.number}"></span></a>
+							</td>
+							<td th:text="${item.name}"/>
+							
+							<td>
+								<span th:if="${item.status == 'Серия'}" th:text="'Серия'" style="color : green"></span>
+	   							<span th:if="${item.status == 'Задание'}" th:text="'Задание'" style="color : red"></span>
+	   							<span th:if="${item.status == 'Проектирование'}" th:text="'Проектирование'" style="color : gray"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

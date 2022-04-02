@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<h2>Маршруты список (инфа об конкретном маршруте)</h2>
+		
+		<form th:method="'POST'">
+			
+			<table>
+				<thead>
+					<tr>
+						<th colspan="4" th:text="'Первичные данные'"/>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" th:text="'ID маршрута'" />
+						<td colspan="2" th:text="${routeDTO.id}" />
+					</tr>
+					<tr>
+						<td colspan="2" th:text="'Обозначение маршрута'" />
+						<td colspan="2" th:text="${routeDTO.number}" />
+					</tr>
+					<tr>
+						<td colspan="2" th:text="'Обозначение детали'" />
+						<td colspan="2" th:text="${routeDTO.part.number + ' ' + routeDTO.part.name}" />
+					</tr>
+				</tbody>
+				<thead>
+					<tr>
+						<th colspan="4" th:text="'Заготовки'"/>
+					</tr>
+					<tr>
+						<th th:text="'№'" />
+						<th th:text="'Материал'" />
+						<th th:text="'Сортамент'" />
+						<th th:text="'Норма расхода'" />
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${#lists.size(blankRateDTOs) == 0}">
+						<tr>
+							<td colspan="4" th:text="'-'" />
+						</tr>
+					</th:block>
+					<th:block th:unless="${#lists.size(blankRateDTOs) == 0}">
+						<tr th:each="item, iterator : ${blankRateDTOs}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.blank.material.type.number} + ' ' + ${item.blank.material.number} + ' - ' + ${item.blank.material.standart}" />
+							<td th:text="${item.blank.sortament.type.number} + ' ' + ${item.blank.sortament.number} + ' - ' + ${item.blank.sortament.standart}" />
+							<td th:text="${item.rate}" />
+						</tr>
+					</th:block>
+				</tbody>
+				<thead>
+					<tr>
+						<th colspan="4" th:text="'Операции'"/>
+					</tr>
+					<tr>
+						<th th:text="'№'" />
+						<th th:text="'Тип'" />
+						<th th:text="'Оборудывание'" />
+						<th th:text="'Тшт.'" />
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${#lists.size(operationDTOs) == 0}">
+						<tr>
+							<td colspan="4" th:text="'-'" />
+						</tr>
+					</th:block>
+					<th:block th:unless="${#lists.size(operationDTOs) == 0}">
+						<tr th:each="item : ${operationDTOs}">
+							<td th:text="${item.index}" />
+							<td th:text="${item.type.number}" />
+							<td th:text="${item.equipment.number}" />
+							<td th:text="${item.time}" />
+						</tr>
+					</th:block>
+				</tbody>
+
+			</table>	
+			
+			
+		</form>
+		
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

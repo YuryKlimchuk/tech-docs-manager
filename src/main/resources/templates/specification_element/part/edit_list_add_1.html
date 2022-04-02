@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+	
+		<div align="center">
+	
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<nav class="main_menu">
+							<span class="main_menu"><b><i>Элементы спецификации</i></b>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../" class="top_menu">Элементы спецификации</a> - </span>
+							<span><a href="../../part" class="top_menu">Детали</a> - </span>
+							<span><a href="../../part/edit-list" class="top_menu">Список для редактирования</a> - </span>  
+							<span><b><i>Добавление новой детали</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<br><br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			
+			<form th:method="'POST'" th:object="${dto}" enctype="multipart/form-data">
+				
+				<table style="width:30%">
+					<tbody>
+						<tr>
+							<td th:text="'Обозначение'" width="40%"/>
+							<td>
+								<input type="text" th:field="*{number}" th:value="*{number}" style="width:70%"/>
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Наименование'" />
+							<td>
+								<input type="text" th:field="*{name}" style="width:70%"/>
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Статус'" />
+							<td>
+								<select th:field="*{status}" th:value="*{status}">
+									<option th:text="'Серия'" th:value="'Серия'" th:selected="${dto.status == 'Серия'}">
+									<option th:text="'Задание'" th:value="'Задание'" th:selected="${dto.status == 'Задание'}">
+									<option th:text="'Проектирование'" th:value="'Проектирование'" th:selected="${dto.status == 'Проектирование'}">
+								</select>
+							</td>
+						</tr>					
+						<tr>
+							<td th:text="'Дата обновления'" />
+							<td>
+								<input type="date" th:field="*{update}" />
+							</td>
+						</tr>	
+						<tr>
+							<td th:text="'Чертеж .PDF'" />
+							<td>
+								<input type="file" accept="application/pdf" th:name="'draw'" />
+							</td>
+						</tr>	
+						<tr>
+							<td colspan="2">
+								<button th:name="'btnSave'">Сохранить</button>	
+							</td>
+						</tr>								
+					</tbody>
+				</table>
+				
+				
+				
+			</form>
+		
+		</div>
+		
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

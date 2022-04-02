@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+			<h2>Сборочные единицы - Редактировать первичные данные</h2>
+			<br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			
+			<form th:method="'POST'" th:object="${dto}" enctype="multipart/form-data">
+				
+				<table>
+					<tbody>
+						<tr>
+							<td th:text="'Обозначение'" />
+							<td>
+								<input type="text" th:field="*{number}" th:value="*{number}"/>
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Наименование'" />
+							<td>
+								<input type="text" th:field="*{name}" />
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Статус'" />
+							<td>
+								<select th:field="*{status}" th:value="*{status}">
+									<option th:text="'Серия'" th:value="'Серия'" th:selected="${dto.status == 'Серия'}">
+									<option th:text="'Задание'" th:value="'Задание'" th:selected="${dto.status == 'Задание'}">
+									<option th:text="'Проектирование'" th:value="'Проектирование'" th:selected="${dto.status == 'Проектирование'}">
+								</select>
+							</td>
+						</tr>					
+						<tr>
+							<td th:text="'Дата обновления'" />
+							<td>
+								<input type="date" th:field="*{update}"  th:value="*{update}"/>
+							</td>
+						</tr>	
+						<tr>
+							<td th:text="'Чертеж .PDF'" />
+							<td>
+								<input type="file" accept="application/pdf" th:name="'draw'" />
+							</td>
+						</tr>	
+						<tr>
+							<td colspan="2">
+								<button th:name="'btnSave'">Сохранить</button>	
+							</td>
+						</tr>								
+					</tbody>
+				</table>
+				<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+				
+			</form>
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

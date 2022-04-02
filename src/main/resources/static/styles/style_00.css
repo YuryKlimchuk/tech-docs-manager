@@ -1,0 +1,48 @@
+button {
+	background-color: #1b4458;
+	color: #c9c6b3;
+}
+
+body {
+	background-color: #eeeac4;
+}
+
+table {
+	border-collapse : collapse;
+	
+}
+
+td, th {
+	border : 1px solid black;
+	padding : 5px;
+}
+
+th {
+	background-color: #556e78;
+}
+
+.redirect_msg {
+	color : red;
+}
+
+
+.top_menu {
+	color : black;
+	font-size: 14pt;
+}
+
+a.top_menu {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;	
+}
+
+a:hover.top_menu {
+	color : red;
+}
+
+span.main_menu {
+	font-size: 18pt;
+	color : red;
+}
+

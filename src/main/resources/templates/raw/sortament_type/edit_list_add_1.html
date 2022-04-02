@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+	
+		<div align="center">
+	
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../" class="top_menu">Заготовки</a> - </span>
+							<span><a href="../" class="top_menu">Тип материалов</a> - </span>
+							<span><a href="./" class="top_menu">Список для редактирования</a> - </span>  
+							<span><b><i>Добавление нового покупного элемента</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<br><br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			
+			<form th:method="'POST'" th:object="${dto}" enctype="multipart/form-data">
+				
+				<table style="width:30%">
+					<tbody>
+						<tr>
+							<td th:text="'Обозначение'" width="40%"/>
+							<td>
+								<input type="text" th:field="*{number}" th:value="*{number}" style="width:70%"/>
+								<p hidden>
+									<input type="file" accept="application/pdf" th:name="'draw'" />
+								</p>
+							</td>
+						</tr>	
+						<tr>
+							<td colspan="2" align="center">
+								<button th:name="'btnSave'" style="width: 50%">Сохранить</button>	
+							</td>
+						</tr>								
+					</tbody>
+				</table>
+				
+				
+				
+			</form>
+		
+		</div>
+		
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

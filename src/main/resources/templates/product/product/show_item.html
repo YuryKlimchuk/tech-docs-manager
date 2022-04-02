@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../" class="top_menu">Продукция</a> - </span>
+							<span><a href="../" class="top_menu">Продукция</a> - </span>  
+							<span><a href="./" class="top_menu">Список для просмотра</a> - </span>  
+							<span><b><i>Подробная информация</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<table style="width:50%">
+				<tr>
+					<th colspan="2" th:text="'Фильтр поиска (в разработке)'" />
+				</tr>
+				<tr>
+					<td>Критерий 1</td>
+					<td>Занчение 1</td>
+				</tr>
+				<tr>
+					<td>Критерий 2</td>
+					<td>Занчение 2</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button style="width: 20%">Найти</button>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			
+			
+			<form th:method="'POST'">
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th colspan="3" th:text="'Первичные данные'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="'ID'" width="20%"/>
+							<td th:text="${dto.id}" colspan="2"/>
+						</tr>
+						<tr>
+							<td th:text="'Обозначение'" />
+							<td th:text="${dto.number}" colspan="2"/>
+						</tr>
+						<tr>
+							<td th:text="'Наименование'" />
+							<td th:text="${dto.type}" colspan="2"/>
+						</tr>
+						<tr>
+							<td th:text="'Сборочная единица'" />
+							<td th:text="'Номер сборки ...'" colspan="2"/>
+						</tr>		
+					</tbody>
+					<th:block th:if="${#lists.size(customers) > 0}">
+						<thead>
+							<tr>
+								<th colspan="3" th:text="'Потребители'" />
+							</tr>	
+							<tr>
+								<th th:text="'№'" width="5%"/>
+								<th th:text="'Наименование'" />
+								<th th:text="'Страна'" width="20%"/>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="customer, iterator : ${customers}">
+								<td th:text="${iterator.count}" />
+								<td th:text="${customer.number}" />
+								<td th:text="${customer.name}" />
+							</tr>
+						</tbody>
+					</th:block>
+					<th:block th:if="${#lists.size(assemblies) > 0}">
+						<thead>
+							<tr>
+								<th colspan="3" th:text="'Сборочные чертежи'" />
+							</tr>	
+							<tr>
+								<th th:text="'№'" width="5%"/>
+								<th th:text="'Обозначение'" />
+								<th th:text="'Статус'" />
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="assembly, iterator : ${assemblies}">
+								<td th:text="${iterator.count}" />
+								<td th:text="${assembly.number + ' ' + assembly.name}" />
+								<td>
+									<span th:if="${assembly.status == 'Серия'}" th:text="'Серия'" style="color : green"></span>
+		   							<span th:if="${assembly.status == 'Задание'}" th:text="'Задание'" style="color : red"></span>
+		   							<span th:if="${assembly.status == 'Проектирование'}" th:text="'Проектирование'" style="color : gray"></span>
+								</td>
+							</tr>
+						</tbody>					
+					</th:block>
+				</table>	
+			</form>
+
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

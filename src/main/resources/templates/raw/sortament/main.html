@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="./" class="top_menu">Элементы спецификации</a> - </span>
+							<span><b><i>Покупные элементы</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			<form th:method="'POST'">
+				<button style="font-size: 14pt" th:name="'btnShow'">Просмотр</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button style="font-size: 14pt" th:name="'btnEdit'">Редактирование</button>
+			</form>
+			<br><br>
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

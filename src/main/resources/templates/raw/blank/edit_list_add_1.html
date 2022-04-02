@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+	
+		<div align="center">
+	
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../" class="top_menu">Сырье</a> - </span>
+							<span><a href="../" class="top_menu">Заготовки</a> - </span>
+							<span><a href="./" class="top_menu">Список для редактирования</a> - </span>  
+							<span><b><i>Добавление нового покупного элемента</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<br><br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			
+			<form th:method="'POST'" th:object="${dto}">
+				<table style="width:40%">
+					<tbody>
+						<tr>
+							<td th:text="'Материал'" />
+							<td>
+								<select th:name="'materialId'">
+									<option th:each="item : ${materials}" th:value="${item.id}" th:text="${item.type.number + ' ' + item.number + ' ' + item.standart}" />
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Сортамент'" />
+							<td>
+								<select th:name="'sortamentId'">
+									<option th:each="item : ${sortaments}" th:value="${item.id}" th:text="${item.type.number + ' ' + item.number + ' ' + item.standart}" />
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<button th:name="'btnSave'" style="width: 20%">Сохранить</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>				
+			</form>
+		
+		</div>
+		
+	</body>
+</html>

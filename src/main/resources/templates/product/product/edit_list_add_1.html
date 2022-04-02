@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../" class="top_menu">Продукция</a> - </span>
+							<span><a href="../" class="top_menu">Продукция</a> - </span>  
+							<span><a href="./" class="top_menu">Список для редактирования</a> - </span>  
+							<span><b><i>Добавление нового элемента</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<br><br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			
+			<form th:method="'POST'" th:object="${dto}">
+				
+				<table style="width:30%">
+					<thead>
+						<tr>
+							<th th:text="'Общая информация'" colspan="2"/>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="'Обозначение'" width="20%"/>
+							<td>
+								<input type="text" th:field="*{number}" th:value="*{number}" style="width:70%"/>
+							</td>
+						</tr>
+						<tr>
+							<td th:text="'Тип'" />
+							<td>
+								<input type="text" th:field="*{type}" style="width:70%" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<button th:name="'btnAccept'" style="width: 50%">Применить</button>	
+							</td>
+						</tr>
+					</tbody>
+					
+					<thead>
+						<tr>
+							<th th:text="'Потребители'" colspan="2"/>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${selectedCustomers}">
+							<td align="center">
+								<button style="background-color: green"
+									th:name="'btnDeleteCustomer'" 
+									th:value="${item['value'].id}">Удалить</button>
+							</td>
+							<td th:text="${iterator.count + ' ' + item['value'].number + ' (' + item['value'].name + ')'}" />
+						</tr>
+						<tr>
+							<td align="center">
+								<button th:name="'btnAddCustomer'">Добавить</button>
+							</td>
+							<td>
+								<select th:name="'addingCustomerId'">
+									<option th:each="item, iterator : ${customers}" 
+											th:text="${item.number + ' (' + item.name + ')'}" 
+											th:value="${item.id}"/>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+
+					<thead>
+						<tr>
+							<th th:text="'Сборочные чертежи'" colspan="2"/>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${selectedAssemblies}">
+							<td align="center">
+								<button style="background-color: green"
+									th:name="'btnDeleteAssembly'" 
+									th:value="${item['value'].id}">Удалить</button>
+							</td>
+							<td th:text="${iterator.count + ' ' + item['value'].number + ' (' + item['value'].name + ')'}" />
+						</tr>
+						<tr>
+							<td align="center">
+								<button th:name="'btnAddAssembly'">Добавить</button>
+							</td>
+							<td>
+								<select th:name="'addingAssemblyId'">
+									<option th:each="item, iterator : ${assemblies}" 
+											th:text="${item.number + ' (' + item.name + ')'}" 
+											th:value="${item.id}"/>
+								</select>
+							</td>
+						</tr>
+					</tbody>					
+					
+					<tbody>	
+						<tr>
+							<td colspan="2" align="center">
+								<button th:name="'btnSave'" style="width: 50%">Сохранить</button>	
+							</td>
+						</tr>								
+					</tbody>
+				</table>
+				
+				
+				
+			</form>
+
+
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

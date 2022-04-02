@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+			<h2>Сборочные единицы - Подробная информация - Нормы расхода - Выбор</h2>
+			<table style="width:50%">
+				<thead>
+					<tr>
+						<th colspan="2" th:text="'Первичные данные'" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="'ID'" />
+						<td th:text="${dto.id}" />
+					</tr>
+					<tr>
+						<td th:text="'Обозначение'" />
+						<td th:text="${dto.number}" />
+					</tr>
+					<tr>
+						<td th:text="'Наименование'" />
+						<td th:text="${dto.name}" />
+					</tr>
+					<tr>
+						<td th:text="'Статус'" />
+						<td th:text="${dto.status}" />
+					</tr>
+					<tr>
+						<td th:text="'.pdf'" />
+						<th:block th:if="${dto.pdf != null}">
+							<td>
+								<button th:name="'btnDownload'">Скачать .pdf</button>
+							</td>	
+						</th:block>
+						<th:block th:unless="${dto.pdf != null}">
+							<td th:text="'N/A'" />	
+						</th:block>
+					</tr>
+					<tr>
+						<td th:text="'Обновлен'" />
+						<td th:text="${dto.update}" />
+					</tr>					
+				</tbody>
+			</table>	
+			<br><br>
+			<form th:method="POST" th:action="@{./rates-1/support-buttons}">
+				<button th:name="'btnBack'">Назад</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button th:name="'btnNext'">Далее</button>
+			</form>
+			<br><br><br>
+			
+			<p style="color :red" th:text="'Отсутствует информация об маршрутах для ' + ${partRateFacade.getPartsWithoutRouteCount()} + ' деталей.'"></p>
+			<p style="color :red" th:text="'Отсутствует информация об заготовках для ' + ${partRateFacade.getPartsWithoutBlankRateCount()} + ' деталей.'"></p>
+			
+			<th:block th:each="item, iterator : ${partRateFacade.getWrappedParts()}"
+					  th:with="part = ${item.part}">
+			
+				<form th:method="'POST'" th:action="@{./rates-1/{id}(id=${part.id})}">
+					<table style="width:100%">
+						<tr>
+							<td style="width:2%" align="center" th:text="${iterator.count}" />
+							<td style="width:15%" align="left" th:text="${part.number + ' ' + part.name + ' - ' + item.count + ' шт.'}" />
+							
+							<td style="width:10%" align="left">
+								<th:block th:if="${partRateFacade.getRoute(part.id).isEmpty()}">
+									<span th:text="'N/A'" style="color : grey"></span>	
+								</th:block>
+								<th:block th:if="${partRateFacade.getRoute(part.id).isPresent()}">
+									<span th:text="${partRateFacade.getRoute(part.id).get().getRoute().number}" style="color : green"></span>	
+								</th:block>
+							</td>
+					
+							<td style="width:10%" align="left">
+								<th:block th:if="${#lists.size(item.getRouteVariants()) < 2}">
+									<span th:text="'-'" style="color : grey"></span>	
+								</th:block>
+								<th:block th:unless="${#lists.size(item.getRouteVariants()) < 2}">
+									<select th:name="'selectedRouteId'">
+										<option th:each="route : ${item.getRouteVariants()}" th:text="${route.route.number}" th:value="${route.route.id}" />
+									</select>	
+								</th:block>
+							</td>
+							
+							<td style="width:5%" align="center">
+								<button th:name="'btnAcceptRoute'" th:disabled="${#lists.size(item.getRouteVariants()) < 2}">Применить</button>
+							</td>
+							
+							<td style="width:12%" align="left">
+								<th:block th:if="${partRateFacade.getBlankRate(part.id).isEmpty()}">
+									<span th:text="'N/A'" style="color : grey"></span>	
+								</th:block>
+								<th:block th:if="${partRateFacade.getBlankRate(part.id).isPresent()}">
+									<span style="color : green" th:text="${
+													  partRateFacade.getBlankRate(part.id).get().getBlank().getSortament().getType().number + ' '
+													+ partRateFacade.getBlankRate(part.id).get().getBlank().getSortament().number + ' - '
+												  	+ partRateFacade.getBlankRate(part.id).get().getBlank().getMaterial().getType().number + ' ' 
+												  	+ partRateFacade.getBlankRate(part.id).get().getBlank().getMaterial().number + ' ' 
+												  	+ partRateFacade.getBlankRate(part.id).get().getBlank().getMaterial().standart}" ></span>	
+								</th:block>
+							</td>
+							
+							<td style="width:30%" align="left">
+								
+								<th:block th:if="${#lists.size(item.getBlankRateVariants()) < 2}">
+									<span th:text="'-'" style="color : grey"></span>	
+								</th:block>
+								
+								<th:block th:unless="${#lists.size(item.getBlankRateVariants()) < 2}">
+									<select th:name="'selectedBlankRateId'">
+										<option th:each="blankRate : ${item.getBlankRateVariants()}" th:value="${blankRate.id}" 
+												th:text="${blankRate.getBlank().getSortament().getType().number + ' '
+													+ blankRate.getBlank().getSortament().number + ' - '
+												  	+ blankRate.getBlank().getMaterial().getType().number + ' ' 
+												  	+ blankRate.getBlank().getMaterial().number + ' ' 
+												  	+ blankRate.getBlank().getMaterial().standart}" 
+										/>
+									</select>	
+								</th:block>
+								
+										
+								
+							</td>
+							
+							<td style="width:8%" align="center">
+								<button th:name="'btnAcceptBlankRate'" th:disabled="${#lists.size(item.getBlankRateVariants()) < 2}">Применить</button>
+							</td>
+						</tr>
+					</table>	
+				</form>
+			
+			</th:block>
+			
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+				<!-- 
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th colspan="2" th:text="'Первичные данные'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="'ID'" />
+							<td th:text="${dto.id}" />
+						</tr>
+						<tr>
+							<td th:text="'Обозначение'" />
+							<td th:text="${dto.number}" />
+						</tr>
+						<tr>
+							<td th:text="'Наименование'" />
+							<td th:text="${dto.name}" />
+						</tr>
+						<tr>
+							<td th:text="'Статус'" />
+							<td th:text="${dto.status}" />
+						</tr>
+						<tr>
+							<td th:text="'.pdf'" />
+							<th:block th:if="${dto.pdf != null}">
+								<td>
+									<button th:name="'btnDownload'">Скачать .pdf</button>
+								</td>	
+							</th:block>
+							<th:block th:unless="${dto.pdf != null}">
+								<td th:text="'N/A'" />	
+							</th:block>
+						</tr>
+						<tr>
+							<td th:text="'Обновлен'" />
+							<td th:text="${dto.update}" />
+						</tr>					
+					</tbody>
+				</table>	
+				<br><br>
+				<button th:name="'btnBack'">Назад</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button th:name="'btnNext'">Далее</button>
+				<br><br><br>
+				<p style="color :red">Отсутствует информация об маршрутах для 5 детелей из 15</p>
+				
+				
+
+				<th:block th:each="part, iterator : ${partRates}">
+						  
+					<form th:method="'POST'" th:action="@{./rates-1/{id}(id=${part['key'].item.id})}">
+						<table style="width:75%">
+							<tr>
+								<td style="width:3%" align="center" th:text="${iterator.count}" />
+								<td style="width:21%" align="left" th:text="${part['key'].item.number + ' ' + part['key'].item.name + ' - ' + part['value'] + ' шт.'}" />
+								<td style="width:14%" align="left">
+									
+									<span th:if="${part['key'].getSelected().isEmpty()}" 
+										  th:text="'N/A'" style="color : grey"></span>
+									
+									<span th:unless="${part['key'].getSelected().isEmpty()}" 
+										  th:text="${part['key'].getSelected().get().getItem().number}" style="color : green"></span>
+										  
+								</td>
+								
+								<td style="width:17%" align="center">
+									<span th:if="${#maps.size(part['key'].itemsForChoose) < 2}"
+										  th:text="'N/A'" style="color : grey"></span>
+										  
+									<select th:unless="${#maps.size(part['key'].itemsForChoose) < 2}" th:name="'selectedRouteId'">
+										<option th:each="route : ${part['key'].itemsForChoose}" th:text="${route['value'].getItem().number}" th:value="${route['key']}"/>
+									</select> 	  	
+								</td>
+								
+								<td align="center" width="8%">
+									<button th:name="'btnAccept'"
+											th:disabled="!${#maps.size(part['key'].itemsForChoose) > 1}">Применить</button>
+								</td> 
+								
+								<td>
+
+									<th:block th:if="${part['key'].getSelected().isEmpty()}">
+										<span th:text="'N/A'" style="color : grey"></span>
+									</th:block>
+									
+									
+									<th:block th:if="${part['key'].getSelected().isPresent()}">
+										
+										<th:block th:if="${part['key'].getSelected().get().getSelected().isEmpty()}">
+											<span th:text="'N/A'" style="color : grey"></span>
+										</th:block>
+										
+										<th:block th:if="${part['key'].getSelected().get().getSelected().isPresent()}">
+											<span th:with="blank=${part['key'].getSelected().get().getSelected().get()}"
+												  th:text="${blank.getBlank().getSortament().getType().number + ' '
+												    + blank.getBlank().getSortament().number + ' - '
+												  	+ blank.getBlank().getMaterial().getType().number + ' ' 
+												  	+ blank.getBlank().getMaterial().number + ' ' 
+												  	+ blank.getBlank().getMaterial().standart}" 
+												  
+												  style="color : green"></span>
+										</th:block>
+										
+									</th:block>
+									  	
+								</td>
+								
+								<td>
+									<span>1</span>	
+								</td>
+								
+								<td align="center" width="8%">
+									<button th:name="'btnAccept'"
+											th:disabled="!${#maps.size(part['key'].itemsForChoose) > 1}">Применить</button>
+								</td> 
+								
+							</tr>
+						</table>
+					</form>
+					
+				</th:block>
+				 -->

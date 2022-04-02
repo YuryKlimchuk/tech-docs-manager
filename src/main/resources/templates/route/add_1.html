@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><b><i>Шаг 1 - Общие данные</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		
+			<form th:method="'POST'">
+				<table>
+					<thead>
+						<tr>
+							<th colspan="2" th:text="'Общая информация'"/>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="'Обозначение маршрута'" />
+							<td>
+								<input type="text" th:name="'number'"/>
+							</td>
+						</tr>	
+						<tr>
+							<td th:text="'Деталь'" />
+							<td>
+								<select th:name="'partId'">
+									<option th:each="item, iterator : ${parts}" th:text="${item.number} + ' ' + ${item.name}" th:value="${item.id}" />
+								</select>
+							</td>
+						</tr>	
+						<tr>
+							<td colspan="2">
+								<button th:name="'btnNext'">Далее</button>
+							</td>
+						</tr>		
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

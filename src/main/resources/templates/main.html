@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+	
+	
+		<div align="center">
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<nav class="main_menu">
+							<span class="main_menu"><a href="/specification-element" class="top_menu">Элементы спецификации</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<!-- 						
+							<p class="top_menu">
+								<span><a href="/specification-element" class="top_menu">Элементы спецификации</a> - </span>
+								<span><a href="/specification-element/assembly" class="top_menu">Сборочные единицы</a> - </span>
+								<span><a href="/specification-element/assembly/show-list" class="top_menu">Список для просмотра</a> - </span> 
+								<span><a th:href="@{'/specification-element/assembly/show-list/' + ${dto.id}}" class="top_menu">Подробная информация</a> - </span>
+								<span><b><i>Развернутая сборка</i></b></span>
+							</p> 
+						-->
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h2>Changelog</h2>
+		<p>
+		<b>Версия 1.0.0</b><br>
+		-Элементы спецификации: <br>
+			&nbsp;&nbsp;&nbsp;1. Сборки<br>
+			&nbsp;&nbsp;&nbsp;2. Детали<br>
+			&nbsp;&nbsp;&nbsp;3. Стандартные изделия<br>
+			&nbsp;&nbsp;&nbsp;4. Покупные изделия<br>
+			&nbsp;&nbsp;&nbsp;5. Взаимозамениемые изделия<br>
+		-Продукция<br>
+		-Планирование (с расчетом общей спецификации)<br>
+		</p>
+		
+	</body>
+</html>

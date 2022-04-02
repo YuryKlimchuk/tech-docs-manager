@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../../../" class="top_menu">Элементы спецификации</a> - </span>
+							<span><a href="../../" class="top_menu">Сборочные единицы</a> - </span>
+							<span><a href="../" class="top_menu">Список для редактирования</a> - </span>  
+							<span><a href="../" class="top_menu">Редактирование cборочки</a> - </span>  
+							<span><b><i>Редактирование спецификации</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<br><br><br>	
+
+			<table style="width:50%">
+				<thead>
+					<tr>
+						<th colspan="2" th:text="'Первичные данные'" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="'ID'" />
+						<td th:text="${assembly.id}" />
+					</tr>
+					<tr>
+						<td th:text="'Обозначение'" />
+						<td th:text="${assembly.number}" />
+					</tr>
+					<tr>
+						<td th:text="'Наименование'" />
+						<td th:text="${assembly.name}" />
+					</tr>
+					<tr>
+						<td th:text="'Статус'" />
+						<td th:text="${assembly.status}" />
+					</tr>
+					<tr>
+						<td th:text="'.pdf'" />
+						<th:block th:if="${assembly.pdf != null}">
+							<td>
+								<button th:name="'btnDownload'">Скачать .pdf</button>
+							</td>	
+						</th:block>
+						<th:block th:unless="${assembly.pdf != null}">
+							<td th:text="'N/A'" />	
+						</th:block>
+					</tr>
+					<tr>
+						<td th:text="'Обновлен'" />
+						<td th:text="'---------'" />
+					</tr>					
+				</tbody>
+			</table>				
+
+			<br><br><br>	
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			
+			
+			<form th:method="'POST'">
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th th:text="'СПЕЦИФИКАЦИЯ'" colspan="4"/>
+							<th>
+								<button th:name="'btnCopy'">Копировать</button>
+							</th>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<th th:text="'Сборочные единицы'" colspan="5"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="35%" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Кол.'" />
+							<th th:text="'Удалить'" />
+						</tr>
+						<tr>
+							<th th:text="'-'"/>
+							<th colspan="2" align="left">
+								<select th:name="'assemblyAddingId'">
+									<option th:each="item : ${assembliesForAdding}" 
+											th:text="${item.number + ' ' + item.name}" 
+											th:value="${item.id}" />
+								</select>
+							</th>
+							<th>
+								<input type="number" min="1" th:value="1" th:name="'assemblyAddingCount'" />
+							</th>
+							<th>
+								<button th:name="'btnAddAssembly'">Добавить</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${assemblies}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.item.number}" />
+							<td th:text="${item.item.name}" />
+							<td th:text="${item.count}" />
+							<td align="center">
+								<button th:name="'btnDeleteAssembly'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Детали'" colspan="5"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="35%" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Кол.'" />
+							<th th:text="'Удалить'" />
+						</tr>
+						<tr>
+							<th th:text="'-'"/>
+							<th colspan="2" align="left">
+								<select th:name="'partAddingId'">
+									<option th:each="item : ${partsForAdding}" 
+											th:text="${item.number + ' ' + item.name}" 
+											th:value="${item.id}" />
+								</select>
+							</th>
+							<th>
+								<input type="number" min="1" th:value="1" th:name="'partAddingCount'" />
+							</th>
+							<th>
+								<button th:name="'btnAddPart'">Добавить</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${parts}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.item.number}" />
+							<td th:text="${item.item.name}" />
+							<td th:text="${item.count}" />
+							<td align="center">
+								<button th:name="'btnDeletePart'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Стандартные изделия'" colspan="5"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="35%" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Кол.'" />
+							<th th:text="'Удалить'" />
+						</tr>
+						<tr>
+							<th th:text="'-'"/>
+							<th colspan="2" align="left">
+								<select th:name="'standartAddingId'">
+									<option th:each="item : ${standartsForAdding}" 
+											th:text="${item.number + ' ' + item.name}" 
+											th:value="${item.id}" />
+								</select>
+							</th>
+							<th>
+								<input type="number" min="1" th:value="1" th:name="'standartAddingCount'" />
+							</th>
+							<th>
+								<button th:name="'btnAddStandart'">Добавить</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${standarts}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.item.number}" />
+							<td th:text="${item.item.name}" />
+							<td th:text="${item.count}" />
+							<td align="center">
+								<button th:name="'btnDeleteStandart'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Взаимозаменяемые комплектующие'" colspan="5"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="35%" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Кол.'" />
+							<th th:text="'Удалить'" />
+						</tr>
+						<tr>
+							<th th:text="'-'"/>
+							<th colspan="2" align="left">
+								<select th:name="'vzkAddingId'">
+									<option th:each="item : ${vzksForAdding}" 
+											th:text="${item.number + ' ' + item.name}" 
+											th:value="${item.id}" />
+								</select>
+							</th>
+							<th>
+								<input type="number" min="1" th:value="1" th:name="'vzkAddingCount'" />
+							</th>
+							<th>
+								<button th:name="'btnAddVzk'">Добавить</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${vzks}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.item.number}" />
+							<td th:text="${item.item.name}" />
+							<td th:text="${item.count}" />
+							<td align="center">
+								<button th:name="'btnDeleteVzk'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Покупные изделия'" colspan="5"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="35%" />
+							<th th:text="'Наименование'" />
+							<th th:text="'Кол.'" />
+							<th th:text="'Удалить'" />
+						</tr>
+						<tr>
+							<th th:text="'-'"/>
+							<th colspan="2" align="left">
+								<select th:name="'buyAddingId'">
+									<option th:each="item : ${buysForAdding}" 
+											th:text="${item.number + ' ' + item.name}" 
+											th:value="${item.id}" />
+								</select>
+							</th>
+							<th>
+								<input type="number" min="1" th:value="1" th:name="'buyAddingCount'" />
+							</th>
+							<th>
+								<button th:name="'btnAddBuy'">Добавить</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${buys}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.item.number}" />
+							<td th:text="${item.item.name}" />
+							<td th:text="${item.count}" />
+							<td align="center">
+								<button th:name="'btnDeleteBuy'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			
+			
+		</div>
+	</body>
+</html>
+
+	

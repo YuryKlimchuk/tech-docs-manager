@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+		
+			
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../" class="top_menu">Планирование</a> - </span>
+							<span><a href="./" class="top_menu">Создание списка</a> - </span>
+							<span><b><i>Выбор комплектации</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+				<table style="width:65%">
+					<thead>
+						<tr>
+							<th th:text="'Список продукции'" colspan="6" />
+						</tr>
+						<tr>
+							<th th:text="'№'" width="5%"/>
+							<th th:text="'Обозначение'" width="25%"/>
+							<th th:text="'Кол.'" width="5%" />
+							<th th:text="'Выбор комплектации'" width="30%"/>
+							<th th:text="'Выбранная сборка'" width="25%" />
+							<th th:text="'Выбрать'" />
+						</tr>
+					</thead>
+				</table>
+						
+				<th:block th:each="product, iterator : ${products}" th:with="count=${product['value']}, item=${product['key']}">
+					<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/' + ${item.id}">
+						<table style="width:65%">
+							<tr>
+								<td th:text="${iterator.count}" align="center" width="5%" />
+								<td th:text="${item.type + ' ' + item.number}" width="25%"/>
+								<td th:text="${count}" align="center" width="5%" />
+								<td width="30%">
+									<th:block th:if="${#lists.size(item.assemblies) > 1}">
+										<select th:name="'selectedId'">
+											<option th:each="assembly : ${item.assemblies}" th:text="${assembly.number + ' ' + assembly.name}" th:value="${assembly.id}" />
+										</select>
+									</th:block>
+									<th:block th:unless="${#lists.size(item.assemblies) > 1}">
+										<span th:text="'N/A'"></span>
+									</th:block>
+								</td>
+								<td width="25%">
+									<span th:if="${item.selectedAssembly == null}" th:text="'N/A'"></span>
+									<span th:unless="${item.selectedAssembly == null}" th:text="${item.selectedAssembly.number + ' ' + item.selectedAssembly.name}"></span>
+								</td>
+								<td align="center">
+									<button th:name="'btnSelect'" th:value="${item.id}" th:disabled="${#lists.size(item.assemblies) < 2}">Выбрать</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</th:block>
+				
+				<br><br>
+				<form th:method="'POST'">
+					<button th:name="'btnBack'" style="width:10%; height:25px"><<<Назад</button>
+					&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+					<button th:name="'btnNext'" style="width:10%; height:25px">Далее>>></button>
+				</form>	
+				<br><br>
+		</div>
+	</body>
+</html>

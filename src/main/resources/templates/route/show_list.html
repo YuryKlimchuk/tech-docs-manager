@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<h2>Маршруты список</h2>
+		
+		<form th:method="'POST'">
+			
+			<table>
+				<thead>
+					<tr>
+						<th th:text="${#lists.size(routes)}" colspan="3"/>
+					</tr>	
+					<tr>
+						<th th:text="'№'" />
+						<th th:text="'Обозначение'" />
+						<th th:text="'Деталь'" />
+					</tr>	
+				</thead>
+				
+				<tbody>
+					<tr th:each="item, iterator : ${routes}">
+						<td th:text="${iterator.count}" />
+						<td>
+							<a th:href="@{/route/show-list/{id}(id=${item.id})}"><span th:text="${item.number}"></span></a>
+						</td>
+						<td >
+							<a th:href="@{/part/show-list/{id}(id=${item.part.id})}"><span th:text="${item.part.number + ' ' + item.part.name + ' (' + item.part.status + ')'}"></span></a>
+						</td>				
+					</tr>
+				</tbody>
+			</table>
+			
+			
+		</form>
+		
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><b><i>Шаг 3 - Добавление операций</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		
+			<form th:method="'POST'">
+				<table>
+					<thead>
+						<tr>
+							<th colspan="5" th:text="'Операции тех. процесса'" />
+						</tr>
+					</thead>
+					<tbody>
+					
+						<th:block th:unless="${#lists.isEmpty(operations)}">
+							<tr th:each="item, iterator : ${operations}">
+								<td th:text="${iterator.count}" />
+								<td th:text="${item.type.number}" />
+								<td th:text="${item.equipment.number}" />
+								<td th:text="${item.time}" />
+								<td>
+									<button th:name="'btnDelete'" th:value="${iterator.index}">Удалить</button>		
+								</td>
+							</tr>	
+						</th:block>
+						
+	
+						<tr>
+							<td>
+								<!-- <input type="number" th:name="'index'"> -->
+								<!-- <th:block th:each="i: ${#numbers.sequence(1, 5)}"></th:block> -->
+								<select th:name="'index'">
+									<option th:each="index : ${#numbers.sequence(1, #lists.size(operations) + 1)}" 
+											th:text="${index}" 
+											th:value="${index}"
+											th:selected="${index == #lists.size(operations) + 1}"/>
+								</select>
+	
+							</td>
+							<td>
+								<select th:name="'operationTypeId'">
+									<option th:each="item : ${operationTypes}" th:text="${item.number}" th:value="${item.id}"/>
+								</select>
+							</td>
+							<td>
+								<select th:name="'equipmentId'">
+									<option th:each="item : ${equipments}" th:text="${item.number}" th:value="${item.id}"/>
+								</select>
+							</td>
+							<td>
+								<input type="number" th:name="'time'">
+							</td>
+							<td>
+								<button th:name="'btnAddOperation'">Добавить</button>
+							</td>
+						</tr>
+	
+						
+						<tr>
+							<td colspan="5">
+								<button th:name="'btnNext'">Далее</button>	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>	
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

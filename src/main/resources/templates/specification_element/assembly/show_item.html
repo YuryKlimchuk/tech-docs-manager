@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<nav class="main_menu">
+							<span class="main_menu"><b><i>Элементы спецификации</i></b>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="/specification-element" class="top_menu">Элементы спецификации</a> - </span>
+							<span><a href="/specification-element/assembly" class="top_menu">Сборочные единицы</a> - </span>
+							<span><a href="/specification-element/assembly/show-list" class="top_menu">Список для просмотра</a> - </span>  
+							<span><b><i>Подробная информация</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<form th:method="'POST'">
+
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th colspan="2" th:text="'Первичные данные'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="'ID'" />
+							<td th:text="${dto.id}" />
+						</tr>
+						<tr>
+							<td th:text="'Обозначение'" />
+							<td th:text="${dto.number}" />
+						</tr>
+						<tr>
+							<td th:text="'Наименование'" />
+							<td th:text="${dto.name}" />
+						</tr>
+						<tr>
+							<td th:text="'Статус'" />
+							<td th:text="${dto.status}" />
+						</tr>
+						<tr>
+							<td th:text="'.pdf'" />
+							<th:block th:if="${dto.pdf != null}">
+								<td>
+									<button th:name="'btnDownload'">Скачать .pdf</button>
+								</td>	
+							</th:block>
+							<th:block th:unless="${dto.pdf != null}">
+								<td th:text="'N/A'" />	
+							</th:block>
+						</tr>
+						<tr>
+							<td th:text="'Обновлен'" />
+							<td th:text="${dto.update}" />
+						</tr>					
+					</tbody>
+				</table>	
+				<br><br>
+				<button th:name="'btnRates'" th:disabled="'true'" style="color : gray">Нормы расхода (в разработке)</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button th:name="'btnExpandedAssembly'" th:disabled="${#lists.size(specification.assemblies) == 0}">Развернутая спецификация</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button th:name="'btnDownloadPdf'" th:disabled="'true'" style="color : gray">Скачать .pdf (в разработке)</button>
+				<br><br><br>
+				
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th th:text="'СПЕЦИФИКАЦИЯ'" colspan="4"/>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<th th:text="'Сборочные единицы'" colspan="4"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Кол.'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${specification.assemblies}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.label}" />
+							<td th:text="${item.count}" />
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Детали'" colspan="4"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Кол.'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${specification.parts}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.label}" />
+							<td th:text="${item.count}" />
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Стандартные изделия'" colspan="4"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Кол.'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${specification.standarts}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.label}" />
+							<td th:text="${item.count}" />
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Взаимозаменяемые комплектующие'" colspan="4"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Кол.'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${specification.vzks}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.label}" />
+							<td th:text="${item.count}" />
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th th:text="'Покупные изделия'" colspan="4"/>
+						</tr>
+						<tr>
+							<th th:text="'№'" />
+							<th th:text="'Обозначение'" />
+							<th th:text="'Кол.'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${specification.buys}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item.label}" />
+							<td th:text="${item.count}" />
+						</tr>
+					</tbody>
+				</table>
+
+
+			</form>
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

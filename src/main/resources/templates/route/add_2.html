@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><b><i>Шаг 2 - Добавление заготовок</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		
+			<form th:method="'POST'">
+				<table>
+					<thead>
+						<tr>
+							<th colspan="4" th:text="'Заготовки'" />
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${blankRates}">
+							<td th:text="${iterator.count}" />
+							<td th:text="${item['key'].sortament.type.number} + ' ' + ${item['key'].sortament.standart} 
+											+ ' ' + ${item['key'].sortament.number} + ' - ' 
+											+ ${item['key'].material.type.number} + ' ' 
+											+ ${item['key'].material.number}" />
+							<td th:text="${item['value']}" />
+							<td>
+								<button th:name="''">Удалить</button>
+							</td>
+						</tr>
+						<th:block>
+							<tr>
+								<td th:text="'-'"/>
+								<td>
+									<select th:name="'blankId'">
+										<option 
+											th:each="item, iterator : ${blanks}" 
+											th:text="${item.sortament.type.number} + ' ' + ${item.sortament.standart} 
+													+ ' ' + ${item.sortament.number} + ' - ' 
+													+ ${item.material.type.number} + ' ' 
+													+ ${item.material.number}" 
+											th:value="${item.id}" />
+									</select>	
+								</td>
+								<td>
+									<input type="text" th:name="'blankRate'">
+								</td>
+								<td>
+									<button th:name="'btnAddBlankRate'">Добавить</button>
+								</td>
+							</tr>
+						</th:block>
+						
+						<tr>
+							<td colspan="4">
+								<button th:name="'btnNext'">Далее</button>
+							</td>
+						</tr>		
+					</tbody>
+				</table>
+			</form>
+		</div>	
+	</body>
+</html>

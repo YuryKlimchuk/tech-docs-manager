@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		
+		<div align="center">
+		
+			<table style="width:100%; margin-bottom: 30px">
+				<tr>
+					<td width="15%" height="100px" rowspan="2">
+						<form style="padding-left: 20px">
+							<p>Роль: <span>Контруктор</span></p>
+							<p><span>Климчук Ю.В.</span></p>
+							<p><button>Выйти</button></p>
+						</form>
+					</td>
+					<td height="100px" align="center">
+						<h2>ГЛАВНОЕ МЕНЮ</h2>
+						<h4>(в разработке)</h4>
+					</td>
+					<td width="15%" height="100px" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p class="top_menu">
+							<span><a href="../" class="top_menu">Элементы спецификации</a> - </span>
+							<span><a href="./" class="top_menu">Взаимозаменяемые комплектующие</a> - </span>  
+							<span><b><i>Список для редактирования</i></b></span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		
+			<table style="width:50%">
+				<tr>
+					<th colspan="2" th:text="'Фильтр поиска (в разработке)'" />
+				</tr>
+				<tr>
+					<td>Критерий 1</td>
+					<td>Занчение 1</td>
+				</tr>
+				<tr>
+					<td>Критерий 2</td>
+					<td>Занчение 2</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button style="width: 20%">Найти</button>
+					</td>
+				</tr>
+			</table>
+			
+		
+			<br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br>
+			<form th:method="'POST'">
+				<table style="width:50%">
+					<thead>
+						<tr>
+							<th th:text="'№'" width="5%" />
+							<th th:text="'Обозначение'" width="30%" />
+							<th th:text="'Наименование'" width="20%" />
+							<th th:text="'Редактировать'" width="15%" />
+							<th th:text="'Удалить'" width="15%" />
+						</tr>
+						<tr>
+							<td colspan="6" align="center">
+								<button th:name="'btnAdd'" style="width: 20%">Добавить</button>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item, iterator : ${items}">
+							<td th:text="${iterator.count}" align="center"/>
+							<td>
+								<a th:href="@{/specification-element/standart/show-list/{id}(id=${item.id})}" target="_blank"><span th:text="${item.number}"></span></a>
+							</td>
+							<td th:text="${item.name}"/>
+							<td align="center">
+								<button th:name="'btnEdit'" th:value="${item.id}">Редактироваь</button>
+							</td>
+							<td align="center">
+								<button th:name="'btnDelete'" th:value="${item.id}">Удалить</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				
+			</form>
+		
+		</div>
+	</body>
+</html>
+
+
+<!-- 
+
+
+
+ -->

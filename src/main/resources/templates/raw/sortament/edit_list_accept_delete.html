@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>TechDocsManager</title>
+		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+	</head>
+	<body>
+		<div align="center">
+			<br><br><br><br>
+			<h2>Подтверждение удаления элемента?</h2>
+			<br><br>
+			<form th:method="'POST'">
+				<table style="width:30%">
+					<tbody>
+						<tr>
+							<td th:text="ID" width="40%"/>
+							<td th:text="${item.id}" />
+						</tr>
+						<tr>
+							<td th:text="Обозначение" />
+							<td th:text="${item.number}" />
+						</tr>
+						<tr>
+							<td align="center"><button th:name="'btnDelete'">Удалить</button></td>
+							<td align="center"><button th:name="'btnCancel'">Отмена</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
