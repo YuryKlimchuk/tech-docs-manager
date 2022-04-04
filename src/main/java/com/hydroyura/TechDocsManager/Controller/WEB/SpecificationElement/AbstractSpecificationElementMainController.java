@@ -1,8 +1,9 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement;
 
-public class AbstractSpecificationElementMainController implements ISpecificationElementMainController {
+public abstract class AbstractSpecificationElementMainController implements ISpecificationElementMainController {
 
 	protected String KEY;
+	
 	
 	
 	@Override

@@ -26,12 +26,12 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyEn
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.Composite.ICompositeUtilities;
 import com.hydroyura.TechDocsManager.Service.Composite.Create.ICompositeStructureCreator;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.ISpecificationRow;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.SpecificationRowType;
 import com.hydroyura.TechDocsManager.Service.Composite.Visitor.VisitorSpecification;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.SpecificationElement.AssemblyRate.AbstractAssemblyRateService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 

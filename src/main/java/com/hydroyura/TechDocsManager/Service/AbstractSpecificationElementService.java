@@ -1,4 +1,4 @@
-package com.hydroyura.TechDocsManager.Service.SpecificationElement;
+package com.hydroyura.TechDocsManager.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 
-public abstract class AbstractSpecificationElementService<D, E, I> implements IBaseService<D, E, I> {
+public abstract class AbstractSpecificationElementService<D, E, I> implements IBaseService<D, I> {
 	
 	protected IConverter<E, D> converter;
 	protected JpaRepository<E, I> repository;

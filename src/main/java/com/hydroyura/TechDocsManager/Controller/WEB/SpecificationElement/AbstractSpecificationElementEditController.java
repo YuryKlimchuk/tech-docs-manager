@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 public abstract class AbstractSpecificationElementEditController<DTO, Entity>  implements ISpecificationElementEditController<DTO>  {

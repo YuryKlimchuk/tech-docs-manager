@@ -29,7 +29,7 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.BuyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.SpecificationElement.AssemblyRate.AbstractAssemblyRateService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 

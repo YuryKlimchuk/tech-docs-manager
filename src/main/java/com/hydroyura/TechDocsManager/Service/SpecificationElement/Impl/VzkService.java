@@ -1,4 +1,4 @@
-package com.hydroyura.TechDocsManager.Service.SpecificationElement;
+package com.hydroyura.TechDocsManager.Service.SpecificationElement.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.VzkDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Service(value = "VzkService")
 public class VzkService extends AbstractSpecificationElementService<VzkDTO, VzkEntity, Long> {

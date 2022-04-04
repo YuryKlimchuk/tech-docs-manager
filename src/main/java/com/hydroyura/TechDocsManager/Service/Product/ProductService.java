@@ -37,7 +37,7 @@ public class ProductService implements IProductService {
 	
 	
 	@Override
-	public Optional<ProductDTO> getById(long id) {
+	public Optional<ProductDTO> getById(Long id) {
 		Optional<ProductEntity> entity = productRepository.findById(id);
 		
 		ProductDTO dto = null;
@@ -73,7 +73,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteById(Long id) {
 		productRepository.deleteById(id);
 	}
 
@@ -89,5 +89,7 @@ public class ProductService implements IProductService {
 		Optional<ProductEntity> entity = productRepository.findById(id);
 		return entity.isPresent() ? assemblyConverter.convertListFromEntityToDto(entity.get().getAssemblies()) : new ArrayList<AssemblyDTO>();
 	}
+
+
 
 }

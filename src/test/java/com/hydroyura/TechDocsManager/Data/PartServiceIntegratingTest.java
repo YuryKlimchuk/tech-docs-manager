@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @SpringBootTest
 @AutoConfigureMockMvc

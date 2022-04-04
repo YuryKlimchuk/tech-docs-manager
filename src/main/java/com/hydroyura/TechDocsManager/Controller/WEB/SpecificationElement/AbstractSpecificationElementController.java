@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 public abstract class AbstractSpecificationElementController<DTO, Entity>  implements ISpecificationElementController {
@@ -17,6 +17,11 @@ public abstract class AbstractSpecificationElementController<DTO, Entity>  imple
 	protected String HTML_SHOW_ITEM;
 	
 	protected String REDIRECT_SHOW_LIST;
+	
+	
+	
+	
+	protected String KEY;
 	
 	
 	public AbstractSpecificationElementController(AbstractSpecificationElementService<DTO, Entity, Long> service) {

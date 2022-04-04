@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.MaterialDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Service(value = "MaterialService")
 public class MaterialService extends AbstractSpecificationElementService<MaterialDTO, MaterialEntity, Long> {

@@ -1,4 +1,4 @@
-package com.hydroyura.TechDocsManager.Service.SpecificationElement;
+package com.hydroyura.TechDocsManager.Service.SpecificationElement.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.StandartDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Component(value = "StandartService")
 public class StandartService extends AbstractSpecificationElementService<StandartDTO, StandartEntity, Long> {

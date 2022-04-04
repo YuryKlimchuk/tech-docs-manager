@@ -11,7 +11,7 @@ import com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.Abstrac
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.VzkDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 
 @Controller

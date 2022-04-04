@@ -14,7 +14,7 @@ import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentTypeDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentTypeEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Controller
 @RequestMapping(value = "/raw/sortament")

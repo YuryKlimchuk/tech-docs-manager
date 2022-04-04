@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.AbstractSpecificationElementController;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.MaterialTypeDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialTypeEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Controller
 @RequestMapping(value = "/raw/material-type")

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentTypeDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentTypeEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Service(value = "SortamentTypeService")
 public class SortamentTypeService extends AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity, Long> {

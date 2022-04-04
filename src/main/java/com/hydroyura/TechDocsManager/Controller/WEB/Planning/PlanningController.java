@@ -276,10 +276,17 @@ public class PlanningController {
 	}
 	
 	
-	@PostMapping(value = "create-list/select-assembly/expanded-specification", params = "btnBlank")
-	public String showCreateListSelectAssemblyExpandedSpecificationPOSTBlank(Model model) {
+	@PostMapping(value = "create-list/select-assembly/expanded-specification", params = "btnRoute")
+	public String showExpandedSpecificationPOSTRoute(Model model) {
 		System.out.println("АТАТАТ");
-		return "redirect:/planning/create-list/select-assembly/expanded-specification";
+		return "redirect:/planning/create-list/select-assembly/expanded-specification/select-route";
+	}
+	
+	
+	@GetMapping(value = "create-list/select-assembly/expanded-specification/select-route")
+	public String showSelectBlankGET(Model model) {
+		model.addAttribute("products", products);
+		return "planning/select_route";
 	}
 	
 }

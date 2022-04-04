@@ -22,11 +22,11 @@ import com.hydroyura.TechDocsManager.Data.DTO.Route.RouteDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.BlankEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 //import com.hydroyura.TechDocsManager.Service.Raw.IBlankService;
 import com.hydroyura.TechDocsManager.Service.Route.IEquipmentService;
 import com.hydroyura.TechDocsManager.Service.Route.IOperationTypeService;
 import com.hydroyura.TechDocsManager.Service.Route.IRouteService;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 

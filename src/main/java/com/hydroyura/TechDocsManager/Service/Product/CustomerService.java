@@ -22,7 +22,7 @@ public class CustomerService implements ICustomerService {
 	private IConverter<CustomerEntity, CustomerDTO> customerConverter;
 
 	@Override
-	public Optional<CustomerDTO> getById(long id) {
+	public Optional<CustomerDTO> getById(Long id) {
 		Optional<CustomerEntity> entity = customerRepository.findById(id);
 		return entity.isPresent() ? Optional.of(customerConverter.convertFromEntityToDto(entity.get())) : Optional.empty();
 	}
@@ -43,7 +43,7 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteById(Long id) {
 		customerRepository.deleteById(id);
 	}
 

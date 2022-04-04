@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.AbstractSpecificationElementController;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Controller
 @RequestMapping(value = "/specification-element/part")

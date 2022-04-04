@@ -21,9 +21,9 @@ import com.hydroyura.TechDocsManager.Data.DTO.Product.CustomerDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Product.ProductDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.Product.CustomerService;
 import com.hydroyura.TechDocsManager.Service.Product.ProductService;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 

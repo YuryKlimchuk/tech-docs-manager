@@ -36,7 +36,8 @@
 							<span><a href="/planning" class="top_menu">Планирование</a> - </span>
 							<span><a href="/planning/create-list" class="top_menu">Создание списка</a> - </span>
 							<span><a href="/planning/create-list/select-assembly" class="top_menu">Выбор комплектации</a> - </span>
-							<span><b><i>Общая спецификация</i></b></span>
+							<span><a href="/planning/create-list/select-assembly/expanded-specification" class="top_menu">Общая спецификация</a> - </span>
+							<span><b><i>Выбор маршрута</i></b></span>
 						</p>
 					</td>
 				</tr>
@@ -44,7 +45,6 @@
 			<br><br>
 			<h2 class="redirect_msg" th:text="${msg}"></h2>
 			<br>
-				
 			<table style="width:50%">
 				<thead>
 					<tr>
@@ -70,10 +70,11 @@
 				</tbody>
 			</table>
 			<br><br>
+			<!--
 			<form th:method="'POST'">
 					<button th:name="'btnPdf'" th:disabled="true" style="width:10%; height:25px">Скачать PDF</button>
 					&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-					<button th:name="'btnRoute'" style="width:10%; height:25px">Выбор маршрутов</button>
+					<button th:name="'btnBlank'" style="width:10%; height:25px">Выбор заготовок</button>
 			</form>
 			<br><br>
 			<table style="width:50%">
@@ -151,6 +152,7 @@
 					</tr>
 				</tbody>
 			</table>
+			 -->	
 		</div>
 	</body>
 </html>

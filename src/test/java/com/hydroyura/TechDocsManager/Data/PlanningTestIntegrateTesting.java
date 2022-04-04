@@ -43,6 +43,7 @@ import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentTypeEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.Composite.ICompositeUtilities;
 import com.hydroyura.TechDocsManager.Service.Composite.Create.ICompositeStructureCreator;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.ISpecificationRow;
@@ -55,7 +56,6 @@ import com.hydroyura.TechDocsManager.Service.Product.IProductService;
 import com.hydroyura.TechDocsManager.Service.Route.IEquipmentService;
 import com.hydroyura.TechDocsManager.Service.Route.IOperationTypeService;
 import com.hydroyura.TechDocsManager.Service.Route.IRouteService;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.SpecificationElement.AssemblyRate.AbstractAssemblyRateService;
 
 

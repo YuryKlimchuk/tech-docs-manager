@@ -14,6 +14,7 @@ public class BuyMainController extends AbstractSpecificationElementMainControlle
 	@PostConstruct
 	private void init() {
 		this.KEY = "buy";
+		this.KEY = "dd";
 	}
 
 }

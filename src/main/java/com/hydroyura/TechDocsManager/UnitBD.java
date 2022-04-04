@@ -25,11 +25,11 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.BuyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.Product.ICustomerService;
 import com.hydroyura.TechDocsManager.Service.Route.IEquipmentService;
 import com.hydroyura.TechDocsManager.Service.Route.IOperationTypeService;
 import com.hydroyura.TechDocsManager.Service.Route.Impl.EquipmentService;
-import com.hydroyura.TechDocsManager.Service.SpecificationElement.AbstractSpecificationElementService;
 
 @Component
 public class UnitBD {

@@ -69,10 +69,10 @@ public class RouteService implements IRouteService {
 	
 	
 	@Override
-	public RouteDTO save(RouteDTO dto) {
+	public Optional<RouteDTO> save(RouteDTO dto) {
 		
 		try {
-			return converter.convertFromEntityToDto(repository.save(converter.convertFromDtoToEntity(dto)));
+			return Optional.of(converter.convertFromEntityToDto(repository.save(converter.convertFromDtoToEntity(dto))));
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			return null;
@@ -118,7 +118,7 @@ public class RouteService implements IRouteService {
 	}
 
 	@Override
-	public Optional<RouteDTO> getById(long id) {
+	public Optional<RouteDTO> getById(Long id) {
 		
 		Optional<RouteEntity> entity = repository.findById(id);
 		
@@ -129,31 +129,11 @@ public class RouteService implements IRouteService {
 
 	@Override
 	public Iterable<BlankRateDTO> getBlankRates(long id) {
-		/*
-		Optional<RouteEntity> route = repository.findById(id);
-		
-		if(route.isPresent() && !route.get().getRates().isEmpty()) {
-			route.get().getRates().forEach(System.out::println);     /// ???????
-			return blankRateConverter.convertListFromEntityToDto(route.get().getRates());
-		}
-
-		return new ArrayList<>();
-		*/
 		return blankRateConverter.convertListFromEntityToDto(blankRateRepository2.findByRoute_Id(id));
 	}
 
 	@Override
 	public Iterable<OperationDTO> getOperations(long id) {
-		/*
-		Optional<RouteEntity> route = repository.findById(id);
-		
-		if(route.isPresent() && !route.get().getOperations().isEmpty()) {
-			route.get().getRates().forEach(System.out::println);     /// ???????
-			return operationConverter.convertListFromEntityToDto(route.get().getOperations());
-		}
-		
-		return new ArrayList<>();
-		*/
 		return operationConverter.convertListFromEntityToDto(operationRepository2.findByRoute_Id(id));
 	}
 
@@ -171,6 +151,11 @@ public class RouteService implements IRouteService {
 		
 		return new ArrayList<>();
 	}
+
+	
+	@Override
+	public void deleteById(Long id) {}
+
 
 
 }
