@@ -42,4 +42,11 @@ public class VisitorSpecification implements IVisitor{
 		
 	}
 
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

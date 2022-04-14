@@ -9,5 +9,6 @@ public interface IProductService extends IBaseService<ProductDTO, Long> {
 	
 	public Iterable<CustomerDTO> getCustomersByProductId(long id);
 	public Iterable<AssemblyDTO> getAssembliesByProductId(long id);
+	//public void set
 
 }

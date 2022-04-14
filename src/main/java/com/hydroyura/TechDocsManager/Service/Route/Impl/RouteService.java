@@ -141,10 +141,21 @@ public class RouteService implements IRouteService {
 	public Iterable<RouteDTO> getRoutesByPart(PartDTO partDTO) {
 		
 		try {
-			return StreamSupport
+			
+			List<RouteDTO> routes = StreamSupport
 					.stream(repository.findByPart(partConverter.convertFromDtoToEntity(partDTO)).spliterator(), false)
 					.map(converter::convertFromEntityToDto)
 					.collect(Collectors.toList());
+			
+			routes.forEach(
+					p -> p.setRates(
+							StreamSupport.stream(getBlankRates(p.getId()).spliterator(), false)
+								.collect(Collectors.toList())
+							)
+			);
+			
+			return routes;
+			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

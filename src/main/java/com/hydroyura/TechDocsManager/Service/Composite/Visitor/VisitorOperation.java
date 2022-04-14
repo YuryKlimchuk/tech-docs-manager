@@ -32,11 +32,9 @@ public class VisitorOperation implements IVisitor {
 			
 			SpecificationRowPart part = (SpecificationRowPart) row;
 			
-			System.out.println("ROUTE ID = " + part.getRoutes().get(0).getId());
-			
-			List<OperationDTO> operations = StreamSupport.stream(routeService.getOperations(part.getRoutes().get(0).getId()).spliterator(), false).collect(Collectors.toList());
-			System.out.println("OPERATIONS COUNT = " + operations.size());
-			
+			//List<OperationDTO> operations = StreamSupport.stream(routeService.getOperations(part.getRoutes().get(0).getId()).spliterator(), false).collect(Collectors.toList());
+			List<OperationDTO> operations = StreamSupport.stream(routeService.getOperations(part.getSelectedRoute().getId()).spliterator(), false).collect(Collectors.toList());
+
 			
 			operations.forEach(new Consumer<OperationDTO>() {
 				@Override
@@ -62,6 +60,11 @@ public class VisitorOperation implements IVisitor {
 
 	public Map<EquipmentDTO, Float> getOperationTime() {
 		return operationTime;
+	}
+
+	@Override
+	public void reset() {
+		operationTime.clear();
 	}
 	
 	

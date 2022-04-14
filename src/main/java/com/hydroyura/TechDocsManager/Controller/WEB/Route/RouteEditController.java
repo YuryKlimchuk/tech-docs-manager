@@ -95,27 +95,30 @@ public class RouteEditController {
 	public String editListAdd2PostAddBlankRate(
 			@RequestParam(name = "blankId") String strBlankId, 
 			@RequestParam(name = "blankRate") String strBlankRate) {
-		
-		System.out.println("POST матрос");
-		
+
 		long blankId = IDValidator.convertFromStringToLong(strBlankId);
 		float blankRate = IDValidator.convertFromStringToFloat(strBlankRate);
 		
 		if(blankId > 0 && blankRate > 0) {
 			blankService.getById(blankId).ifPresent(p -> blankRates.put(p, blankRate));
 		}
-		
-		System.out.println(blankRates);
-		
+
 		return "redirect:/route/edit-list/add-2";
 	}
 	
 	@PostMapping(value = "/edit-list/add-2", params = "btnNext")
 	public String editListAdd2POSTNext(Model model) {
-		
-		System.out.println("ТУ ТУ ТУ");
-		
 		return "redirect:/route/edit-list/add-3";
+	}
+	
+	@PostMapping(value = "/edit-list/add-2", params = "btnDeleteBlankRate")
+	public String editListAdd2POSTDeleteBlankRate(Model model,
+			@RequestParam(name = "btnDeleteBlankRate", defaultValue = "-1") long blankId) {
+		
+		
+		// Удалять сдесь будет искать элемент по заготовке
+		
+		return "redirect:/route/edit-list/add-2";
 	}
 	
 	

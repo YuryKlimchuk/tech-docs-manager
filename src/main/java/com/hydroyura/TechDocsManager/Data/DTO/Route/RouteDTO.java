@@ -1,5 +1,9 @@
 package com.hydroyura.TechDocsManager.Data.DTO.Route;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hydroyura.TechDocsManager.Data.DTO.Raw.BlankRateDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 
 public class RouteDTO {
@@ -9,8 +13,8 @@ public class RouteDTO {
 	private PartDTO part;
 	
 	//private List<OperationDTO> operations = new LinkedList<>();
-	//private Set<BlankRateDTO> rates = new HashSet<>();
-	
+	private List<BlankRateDTO> rates = new ArrayList<>();
+	private BlankRateDTO selectedRate;
 	
 	public RouteDTO() {}
 	
@@ -24,9 +28,27 @@ public class RouteDTO {
 		this.part = part;
 	}
 
+	
+	
 
+	
+	
 
+	public BlankRateDTO getSelectedRate() {
+		return selectedRate;
+	}
 
+	public void setSelectedRate(BlankRateDTO selectedRate) {
+		this.selectedRate = selectedRate;
+	}
+
+	public List<BlankRateDTO> getRates() {
+		return rates;
+	}
+
+	public void setRates(List<BlankRateDTO> rates) {
+		this.rates = rates;
+	}
 
 	public long getId() {
 		return id;

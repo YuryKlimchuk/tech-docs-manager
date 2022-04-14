@@ -2,8 +2,6 @@ package com.hydroyura.TechDocsManager.Service.Composite.Visitor;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,9 +30,9 @@ public class VisitorBlank implements IVisitor {
 			
 			SpecificationRowPart part = (SpecificationRowPart) row;
 			
-			RouteDTO route = routeService.getById(part.getRoutes().get(0).getId()).get();
+			RouteDTO route = part.getSelectedRoute();
 	
-			BlankRateDTO blankRate = StreamSupport.stream(routeService.getBlankRates(route.getId()).spliterator(), false).collect(Collectors.toList()).get(0);
+			BlankRateDTO blankRate = route.getSelectedRate();
 			
 			if(!blankRates.containsKey(blankRate.getBlank())) {
 				blankRates.put(blankRate.getBlank(), Float.valueOf(part.getCount() * blankRate.getRate()));
@@ -49,13 +47,19 @@ public class VisitorBlank implements IVisitor {
 		}
 
 	}
+	
 
 
 	public Map<BlankDTO, Float> getBlankRates() {
 		return blankRates;
 	}
+
+
+	@Override
+	public void reset() {
+		blankRates.clear();
 	
-	
+	}
 	
 
 }

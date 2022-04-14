@@ -19,7 +19,7 @@ public interface ICompositeStructureCreator {
 	public SpecificationRowAssembly createChildren(AssemblyDTO assemblyDTO, long count);
 	
 	
-	public static ISpecificationRow create(PartDTO raw, long count) {
+	public static SpecificationRowPart create(PartDTO raw, long count) {
 		
 		return new SpecificationRowPart(
 						raw.getId(), 

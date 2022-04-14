@@ -5,5 +5,6 @@ import com.hydroyura.TechDocsManager.Service.Composite.Elements.ISpecificationRo
 public interface IVisitor {
 
 	public void visit(ISpecificationRow row);
+	public void reset();
 	
 }

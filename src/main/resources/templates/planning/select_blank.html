@@ -37,7 +37,8 @@
 							<span><a href="/planning/create-list" class="top_menu">Создание списка</a> - </span>
 							<span><a href="/planning/create-list/select-assembly" class="top_menu">Выбор комплектации</a> - </span>
 							<span><a href="/planning/create-list/select-assembly/expanded-specification" class="top_menu">Общая спецификация</a> - </span>
-							<span><b><i>Выбор маршрута</i></b></span>
+							<span><a href="/planning/create-list/select-assembly/expanded-specification/select-route" class="top_menu">Выбор маршрута</a> - </span>
+							<span><b><i>Выбор заготовки</i></b></span>
 						</p>
 					</td>
 				</tr>
@@ -72,43 +73,66 @@
 			</table>
 			<br><br>
 			
-			<table style="width:65%">
+			<table style="width:85%">
 				<thead>
 					<tr>
 						<th th:text="'№'" width="5%"/>
-						<th th:text="'Обозначение'" width="25%"/>
+						<th th:text="'Обозначение'" width="15%"/>
 						<th th:text="'Кол.'" width="5%" />
-						<th th:text="'Выбор маршрута'" width="30%"/>
-						<th th:text="'Маршрут'" width="25%" />
+						<th th:text="'Маршрут'" width="15%" />
+						<th th:text="'Выбор заготовки'" width="25%" />
+						<th th:text="'Заготовка'" width="25%" />
 						<th th:text="'Выбрать'" />
 					</tr>
 				</thead>
 			</table>
-		
-			<th:block th:each="item, iterator : ${parts}">
-				<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/' + ${item['key'].id}">
-					<table style="width:65%">
+			
+			<!--  th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/' + ${item['key'].id}"-->
+			<th:block th:each="item, iterator : ${parts}" th:with="part = ${item['key']}, count = ${item['value'][0]}, route = ${item['key'].selectedRoute}">
+				<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/select-blank/' + ${part.id}">
+					<table style="width:85%">
 						<tr>
 							<td th:text="${iterator.count}" align="center" width="5%" />
-							<td th:text="${item['key'].label}" width="25%"/>
-							<td th:text="${item['value'].get(0)}" width="5%" />
-							<td width="30%">
-								<th:block th:if="${#lists.size(item['key'].routes) > 1}">
-									<select th:name="'selectedId'">
-										<option th:each="route : ${item['key'].routes}" th:text=" ${route.number}" th:value="${route.id}" />
-									</select>
-								</th:block>
-								<th:block th:unless="${#lists.size(item['key'].routes) > 1}">
-									<span th:text="'N/A'"></span>
-								</th:block> 
+							<td th:text="${part.label}" width="15%"/>
+							<td th:text="${count}" align="center" width="5%" />
+							<td th:text="${route.number}" width="15%" />
+							<td width="25%">
+								<select th:name="'selectedId'">
+									<option th:each="blank : ${route.rates}" 
+											th:text="${blank.blank.sortament.type.number} + ' ' 
+															+ ${blank.blank.sortament.standart} + ' ' 
+															+ ${blank.blank.sortament.number} + ' - ' 
+															+ ${blank.blank.material.type.number} + ' ' 
+															+ ${blank.blank.material.number} + ' - ' 
+															+ ${blank.rate}"
+											th:value="${blank.id}" />
+								</select>
+
 							</td>
 							<td width="25%">
-								<span th:if="${item['key'].selectedRoute == null}" th:text="'N/A'"></span>
-								<span th:unless="${item['key'].selectedRoute == null}" th:text="${item['key'].selectedRoute.number}"></span>
-							 </td>
-							<td align="center">
- 								<button th:name="'btnSelect'" th:value="${item['key'].id}" th:disabled="${#lists.size(item['key'].routes) < 2}">Выбрать</button>
+								
+								<span th:if="${route.selectedRate == null}" 
+									  th:text="'N/A'"></span>
+									  
+								<span th:unless="${route.selectedRate == null}"
+									  th:with="selectedBlankRate = ${route.selectedRate}" 
+								      th:text="${selectedBlankRate.blank.sortament.type.number} + ' ' 
+													+ ${selectedBlankRate.blank.sortament.standart} + ' ' 
+													+ ${selectedBlankRate.blank.sortament.number} + ' - ' 
+													+ ${selectedBlankRate.blank.material.type.number} + ' ' 
+													+ ${selectedBlankRate.blank.material.number} + ' - ' 
+													+ ${selectedBlankRate.rate}"></span>
+
 							</td>
+							<td align="center">
+ 								<button th:name="'btnSelect'">Выбрать</button>
+							</td>
+							
+							<!--  
+								<td align="center">
+	 								<button th:name="'btnSelect'" th:value="${item['key'].id}" th:disabled="${#lists.size(item['key'].routes) < 2}">Выбрать</button>
+								</td>
+							-->
 						</tr>
 					</table>
 				</form>
@@ -119,7 +143,7 @@
 					&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 					<button th:name="'btnNext'" style="width:10%; height:25px">Далее>>></button>
 				</form>	
-			<br><br>
+			<br><br> 
 		</div>
 	</body>
 </html>

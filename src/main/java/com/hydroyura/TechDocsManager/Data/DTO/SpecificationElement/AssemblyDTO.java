@@ -1,13 +1,15 @@
 package com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hydroyura.TechDocsManager.Data.DTO.Route.RouteDTO;
 
 public class AssemblyDTO extends SpecificationElementDTO {
 	
 	private String status;
-	
-	
-	
+
 	public AssemblyDTO() {
 		setUpdate(LocalDate.now());
 	}
@@ -18,8 +20,7 @@ public class AssemblyDTO extends SpecificationElementDTO {
 		setStatus(status);
 	}
 	
-	
-	
+
 	public String getStatus() {
 		return status;
 	}
