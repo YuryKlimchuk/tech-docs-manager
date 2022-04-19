@@ -96,7 +96,7 @@
 					<tr th:each="item, iterator : ${parts}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -113,7 +113,7 @@
 					<tr th:each="item, iterator : ${standarts}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -130,7 +130,7 @@
 					<tr th:each="item, iterator : ${vzks}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -147,7 +147,7 @@
 					<tr th:each="item, iterator : ${buys}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 			</table>

@@ -88,7 +88,7 @@
 			</table>
 			
 			<!--  th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/' + ${item['key'].id}"-->
-			<th:block th:each="item, iterator : ${parts}" th:with="part = ${item['key']}, count = ${item['value'][0]}, route = ${item['key'].selectedRoute}">
+			<th:block th:each="item, iterator : ${parts}" th:with="part = ${item}, count = ${item.count}, route = ${item.selectedRoute}">
 				<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/select-blank/' + ${part.id}">
 					<table style="width:85%">
 						<tr>
@@ -127,12 +127,7 @@
 							<td align="center">
  								<button th:name="'btnSelect'">Выбрать</button>
 							</td>
-							
-							<!--  
-								<td align="center">
-	 								<button th:name="'btnSelect'" th:value="${item['key'].id}" th:disabled="${#lists.size(item['key'].routes) < 2}">Выбрать</button>
-								</td>
-							-->
+
 						</tr>
 					</table>
 				</form>
