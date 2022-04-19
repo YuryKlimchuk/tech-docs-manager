@@ -75,7 +75,15 @@
 				</tbody>
 			</table>
 			<br><br>
+			<br><br>
 			
+			<form th:method="'POST'">
+				<button th:name="'btnDownload'" style="width:10%; height:25px">Скачать .docx</button>
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				<button style="width:10%; height:25px" th:disabled="'true'">Резерв</button>
+			</form>
+			
+			<br><br>
 			<table style="width:50%">
 				<thead>
 					<tr>
@@ -143,7 +151,7 @@
 					<tr th:each="item, iterator : ${parts}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -160,7 +168,7 @@
 					<tr th:each="item, iterator : ${standarts}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -177,7 +185,7 @@
 					<tr th:each="item, iterator : ${vzks}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 				<thead>
@@ -194,7 +202,7 @@
 					<tr th:each="item, iterator : ${buys}">
 						<td th:text="${iterator.count}" />
 						<td th:text="${item['key'].label}" />
-						<td th:text="${item['value'].get(0)}" />
+						<td th:text="${item['value']}" />
 					</tr>
 				</tbody>
 			</table>

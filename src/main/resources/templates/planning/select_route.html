@@ -86,28 +86,28 @@
 			</table>
 		
 			<th:block th:each="item, iterator : ${parts}">
-				<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/' + ${item['key'].id}">
+				<form th:method="'POST'" th:action="'/planning/create-list/select-assembly/expanded-specification/select-route/' + ${item.id}">
 					<table style="width:65%">
 						<tr>
 							<td th:text="${iterator.count}" align="center" width="5%" />
-							<td th:text="${item['key'].label}" width="25%"/>
-							<td th:text="${item['value'].get(0)}" width="5%" />
+							<td th:text="${item.label}" width="25%"/>
+							<td th:text="${item.count}" width="5%" />
 							<td width="30%">
-								<th:block th:if="${#lists.size(item['key'].routes) > 1}">
+								<th:block th:if="${#lists.size(item.routes) > 1}">
 									<select th:name="'selectedId'">
-										<option th:each="route : ${item['key'].routes}" th:text=" ${route.number}" th:value="${route.id}" />
+										<option th:each="route : ${item.routes}" th:text=" ${route.number}" th:value="${route.id}" />
 									</select>
 								</th:block>
-								<th:block th:unless="${#lists.size(item['key'].routes) > 1}">
+								<th:block th:unless="${#lists.size(item.routes) > 1}">
 									<span th:text="'N/A'"></span>
 								</th:block> 
 							</td>
 							<td width="25%">
-								<span th:if="${item['key'].selectedRoute == null}" th:text="'N/A'"></span>
-								<span th:unless="${item['key'].selectedRoute == null}" th:text="${item['key'].selectedRoute.number}"></span>
+								<span th:if="${item.selectedRoute == null}" th:text="'N/A'"></span>
+								<span th:unless="${item.selectedRoute == null}" th:text="${item.selectedRoute.number}"></span>
 							 </td>
 							<td align="center">
- 								<button th:name="'btnSelect'" th:value="${item['key'].id}" th:disabled="${#lists.size(item['key'].routes) < 2}">Выбрать</button>
+ 								<button th:name="'btnSelect'" th:value="${item.id}" th:disabled="${#lists.size(item.routes) < 2}">Выбрать</button>
 							</td>
 						</tr>
 					</table>
