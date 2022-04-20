@@ -5,10 +5,11 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
-public abstract class AbstractSpecificationElementController<DTO, Entity>  implements ISpecificationElementController {
+public abstract class AbstractSpecificationElementController<DTO, Entity> extends AbstractController implements ISpecificationElementController {
 	
 	
 	protected AbstractSpecificationElementService<DTO, Entity, Long> service;

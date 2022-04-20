@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.Product.CustomerDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Product.ProductDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyDTO;
@@ -29,7 +30,7 @@ import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 @Controller
 @RequestMapping(value = "/product/product")
-public class ProductEditController {
+public class ProductEditController extends AbstractController {
 
 	@Autowired @Qualifier(value = "ProductService")
 	private ProductService service;

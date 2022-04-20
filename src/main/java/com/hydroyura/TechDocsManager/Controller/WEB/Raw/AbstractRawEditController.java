@@ -5,11 +5,12 @@ import java.util.Optional;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
-public abstract class AbstractRawEditController<DTO, Entity, DTOType, EntityType>  implements IRawEditController<DTO>  {
+public abstract class AbstractRawEditController<DTO, Entity, DTOType, EntityType> extends AbstractController implements IRawEditController<DTO>  {
 
 	private IDTOFactory<DTO> dtoFactory;
 	

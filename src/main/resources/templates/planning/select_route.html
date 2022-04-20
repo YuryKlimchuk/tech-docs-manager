@@ -14,9 +14,9 @@
 				<tr>
 					<td width="15%" height="100px" rowspan="2">
 						<form style="padding-left: 20px">
-							<p>Роль: <span>Контруктор</span></p>
-							<p><span>Климчук Ю.В.</span></p>
-							<p><button>Выйти</button></p>
+							<p>Роль: <span th:text="${role}"></span></p>
+							<p>Пользователь: <span th:text="${userName}"></span></p>
+							<p><a href="/logout">Сменить пользователя</a></p>
 						</form>
 					</td>
 					<td height="100px" align="center">

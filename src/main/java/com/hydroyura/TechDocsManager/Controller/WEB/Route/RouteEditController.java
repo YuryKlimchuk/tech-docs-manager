@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.BlankDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.BlankRateDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Route.OperationDTO;
@@ -32,7 +33,7 @@ import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 @Controller
 @RequestMapping(value = "/route")
-public class RouteEditController {
+public class RouteEditController extends AbstractController {
 	
 	@Autowired @Qualifier(value = "PartService")
 	private AbstractSpecificationElementService<PartDTO, PartEntity, Long> partService;
