@@ -7,15 +7,28 @@
 	</head>
 	<body>
 	
+		<!-- 
+		<div>
+			<h4 th:text="'Пользователь : ' + ${userName}"></h4>
+			<span th:if="${role == 'ROLE_TECHNOLOGIST'}" th:text="'Уровень доступа : технолог'" class="note"></span>
+		   	<span th:if="${role == 'ROLE_PDO'}" th:text="'Уровень доступа : диспетчер ПДО'" class="design"></span>
+		   	<span th:if="${role == 'ROLE_DESIGN'}" th:text="'Уровень доступа : конструктор'" class="task"></span>
+			<br>
+			<a href="/logout">Сменить пользователя</a>
+	   	</div>
+		
+		 -->
+	
+	
 	
 		<div align="center">
 			<table style="width:100%; margin-bottom: 30px">
 				<tr>
 					<td width="15%" height="100px" rowspan="2">
 						<form style="padding-left: 20px">
-							<p>Роль: <span>Контруктор</span></p>
-							<p><span>Климчук Ю.В.</span></p>
-							<p><button>Выйти</button></p>
+							<p>Роль: <span th:text="${role}"></span></p>
+							<p>Пользователь: <span th:text="${userName}"></span></p>
+							<p><a href="/logout">Сменить пользователя</a></p>
 						</form>
 					</td>
 					<td height="100px" align="center">

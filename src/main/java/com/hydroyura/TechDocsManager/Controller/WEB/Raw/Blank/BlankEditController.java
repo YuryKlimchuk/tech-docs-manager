@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.BlankDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.MaterialDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentDTO;
@@ -23,7 +24,7 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 
 @Controller
 @RequestMapping(value = "/raw/blank")
-public class BlankEditController {
+public class BlankEditController extends AbstractController {
 	
 	@Autowired @Qualifier(value = "BlankService")
 	private AbstractSpecificationElementService<BlankDTO, BlankEntity, Long> blankService;

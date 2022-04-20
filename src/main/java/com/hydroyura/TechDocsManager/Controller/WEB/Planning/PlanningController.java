@@ -3,14 +3,9 @@ package com.hydroyura.TechDocsManager.Controller.WEB.Planning;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -32,14 +27,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.Product.ProductDTO;
-import com.hydroyura.TechDocsManager.Data.DTO.Raw.BlankRateDTO;
-import com.hydroyura.TechDocsManager.Data.DTO.Route.RouteDTO;
-import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyDTO;
-import com.hydroyura.TechDocsManager.Service.Composite.ICompositeUtilities;
-import com.hydroyura.TechDocsManager.Service.Composite.Create.ICompositeStructureCreator;
-import com.hydroyura.TechDocsManager.Service.Composite.Elements.ISpecificationRow;
-import com.hydroyura.TechDocsManager.Service.Composite.Elements.SpecificationRowPart;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.SpecificationRowType;
 import com.hydroyura.TechDocsManager.Service.Composite.Visitor.IVisitor;
 import com.hydroyura.TechDocsManager.Service.Composite.Visitor.VisitorBlank;
@@ -47,11 +36,10 @@ import com.hydroyura.TechDocsManager.Service.Composite.Visitor.VisitorOperation;
 import com.hydroyura.TechDocsManager.Service.DOCGenerator.IDOCGenerator;
 import com.hydroyura.TechDocsManager.Service.Product.IProductService;
 import com.hydroyura.TechDocsManager.Service.SpecificationFacade.ISpecificationFacade;
-import com.hydroyura.TechDocsManager.Service.SpecificationFacade.SpecificationFacade;
 
 @Controller
 @RequestMapping(value = "/planning")
-public class PlanningController {
+public class PlanningController extends AbstractController {
 	
 	@Autowired @Qualifier(value = "DOCGenerator")
 	private IDOCGenerator docGenerator;
@@ -226,16 +214,13 @@ public class PlanningController {
 		}		
 	}
 	
-	
-	
-	
+
 	@GetMapping(value = "create-list/select-assembly/expanded-specification")
 	public String showCreateListSelectAssemblyExpandedSpecificationGET(Model model) {
 		
-		model.addAttribute("products", specificationFacade.getProducts());
-		
 		specificationFacade.generateSpecification();
 		
+		model.addAttribute("products", specificationFacade.getProducts());
 		model.addAttribute("parts",specificationFacade.getSpecificationElement(SpecificationRowType.PART));
 		model.addAttribute("standarts",specificationFacade.getSpecificationElement(SpecificationRowType.STANDART));
 		model.addAttribute("buys",specificationFacade.getSpecificationElement(SpecificationRowType.BUY));
@@ -265,12 +250,7 @@ public class PlanningController {
 			redirectAttributes.addFlashAttribute("msg", "Не для всех изделий выбраны сборки");
 			return "redirect:/planning/create-list/select-assembly";
 		}
-		
-		// Проверем чтобы была спецификация
-		//if(compressSpecification == null || compressSpecification.size() == 0) {
-			//return "redirect:/planning/create-list/select-assembly/expanded-specification";
-		//}
-		
+
 		model.addAttribute("products", specificationFacade.getProducts());
 		model.addAttribute("parts", specificationFacade.getParts());
 		
@@ -317,11 +297,6 @@ public class PlanningController {
 			return "redirect:/planning/create-list/select-assembly";
 		}
 		
-		// Проверем чтобы была спецификация
-		//if(compressSpecification == null || compressSpecification.size() == 0) {
-			//return "redirect:/planning/create-list/select-assembly/expanded-specification";
-		//}
-		
 		model.addAttribute("products", specificationFacade.getProducts());
 		model.addAttribute("parts", specificationFacade.getParts());
 
@@ -352,15 +327,7 @@ public class PlanningController {
 
 		return "redirect:/planning/create-list/select-assembly/expanded-specification/select-route/select-blank/result";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	@GetMapping(value = "create-list/select-assembly/expanded-specification/select-route/select-blank/result")
 	public String showResultGET(Model model, RedirectAttributes redirectAttributes) {
@@ -377,28 +344,7 @@ public class PlanningController {
 			return "redirect:/planning/create-list/select-assembly";
 		}
 		
-		// Проверем чтобы была спецификация
-		//if(compressSpecification == null || compressSpecification.size() == 0) {
-			//return "redirect:/planning/create-list/select-assembly/expanded-specification";
-		//}
 		model.addAttribute("products", specificationFacade.getProducts());
-		
-		
-		// Заносим количество из массива в сами строчки спецухи
-		/*
-		List<SpecificationRowPart> updateParts = parts.entrySet().stream()
-				.map(new Function<Map.Entry<SpecificationRowPart, List<Long>>, SpecificationRowPart>() {
-
-					@Override
-					public SpecificationRowPart apply(Entry<SpecificationRowPart, List<Long>> t) {
-						SpecificationRowPart part = t.getKey();
-						part.setCount(t.getValue().stream().mapToLong(p -> p).sum());
-						return part;
-					}
-					
-				})
-				.collect(Collectors.toList());
-		*/
 		
 		// Считаем заготовки
 		visitorBlank.reset();
@@ -412,8 +358,8 @@ public class PlanningController {
 		specificationFacade.getParts().forEach(p -> visitorOperation.visit(p));
 		((VisitorOperation) visitorOperation).getOperationTime()
 			.forEach((key, value) -> System.out.println("KEY = " + key.getNumber() + "; VALUE = " + value));
-		model.addAttribute("operations", ((VisitorOperation) visitorOperation).getOperationTime());
 		
+		model.addAttribute("operations", ((VisitorOperation) visitorOperation).getOperationTime());
 		model.addAttribute("parts",specificationFacade.getSpecificationElement(SpecificationRowType.PART));
 		model.addAttribute("standarts",specificationFacade.getSpecificationElement(SpecificationRowType.STANDART));
 		model.addAttribute("buys",specificationFacade.getSpecificationElement(SpecificationRowType.BUY));
@@ -439,7 +385,6 @@ public class PlanningController {
 						.contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 						.contentLength(byteOut.toByteArray().length)
 						.body(byteOut.toByteArray());
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

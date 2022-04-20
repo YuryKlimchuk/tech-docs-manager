@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.Route.RouteDTO;
 import com.hydroyura.TechDocsManager.Service.Route.IRouteService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
 @Controller
 @RequestMapping(value = "/route")
-public class RouteController {
+public class RouteController extends AbstractController {
 	
 	@Autowired
 	@Qualifier(value = "RouteService")
