@@ -86,8 +86,6 @@ public class RouteService implements IRouteService {
 		try {
 			RouteEntity route = repository.save(converter.convertFromDtoToEntity(dto));
 			
-			//System.out.println("ROUTE ID = " + route.getId());
-			
 			blankRateConverter.convertListFromDtoToEntity(blankRateDTOs).stream()
 				.map(p -> {p.setRoute(route); return p;})
 				.forEach(p -> blankRateRepository.save(p));
@@ -165,7 +163,9 @@ public class RouteService implements IRouteService {
 
 	
 	@Override
-	public void deleteById(Long id) {}
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 
 
 

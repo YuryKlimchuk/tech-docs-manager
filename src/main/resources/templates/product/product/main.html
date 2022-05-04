@@ -6,22 +6,9 @@
 		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
 	</head>
 	<body>
-	
-		<!-- 
-		<div>
-			<h4 th:text="'Пользователь : ' + ${userName}"></h4>
-			<span th:if="${role == 'ROLE_TECHNOLOGIST'}" th:text="'Уровень доступа : технолог'" class="note"></span>
-		   	<span th:if="${role == 'ROLE_PDO'}" th:text="'Уровень доступа : диспетчер ПДО'" class="design"></span>
-		   	<span th:if="${role == 'ROLE_DESIGN'}" th:text="'Уровень доступа : конструктор'" class="task"></span>
-			<br>
-			<a href="/logout">Сменить пользователя</a>
-	   	</div>
 		
-		 -->
-	
-	
-	
 		<div align="center">
+		
 			<table style="width:100%; margin-bottom: 30px">
 				<tr>
 					<td width="15%" height="100px" rowspan="2">
@@ -36,7 +23,7 @@
 							<span class="main_menu"><a href="/specification-element" class="top_menu">Элементы спецификации</a>&nbsp;&nbsp;&nbsp;</span>
 							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
 							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
-							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><b><i>Продукция</i></b>&nbsp;&nbsp;&nbsp;</span>
 							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
 						</nav>
 					</td>
@@ -44,28 +31,27 @@
 				</tr>
 				<tr>
 					<td align="center">
-									
-							<p class="top_menu">
-								<span>Главная страница</span>
-							</p> 
-
+						<p class="top_menu">
+							<span><a href="/product" class="top_menu">Главная</a> - </span>
+							<span><b><i>Продукция</i></b></span>
+						</p>
 					</td>
 				</tr>
 			</table>
+			<br><br>
+			<form th:method="'POST'">
+				<button style="font-size: 14pt" th:name="'btnShow'">Просмотр</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button style="font-size: 14pt" th:name="'btnEdit'">Редактирование</button>
+			</form>
+			<br><br>
 		</div>
-		
-		<h2>Changelog</h2>
-		<p>
-		<b>Версия 1.0.0</b><br>
-		-Элементы спецификации: <br>
-			&nbsp;&nbsp;&nbsp;1. Сборки<br>
-			&nbsp;&nbsp;&nbsp;2. Детали<br>
-			&nbsp;&nbsp;&nbsp;3. Стандартные изделия<br>
-			&nbsp;&nbsp;&nbsp;4. Покупные изделия<br>
-			&nbsp;&nbsp;&nbsp;5. Взаимозамениемые изделия<br>
-		-Продукция<br>
-		-Планирование (с расчетом общей спецификации)<br>
-		</p>
-		
 	</body>
 </html>
+
+
+<!-- 
+
+
+
+ -->

@@ -25,7 +25,7 @@ public interface ICompositeStructureCreator {
 						raw.getId(), 
 						raw.getNumber() + " " + raw.getName() + " (" + raw.getStatus() + ")",
 						count, 
-						SpecificationRowType.PART);
+						SpecificationRowType.PART, raw.getName(), raw.getNumber(), raw.getStatus());
 	}
 
 	public static ISpecificationRow create(StandartDTO raw, long count) {
@@ -34,7 +34,7 @@ public interface ICompositeStructureCreator {
 						raw.getId(), 
 						raw.getName() + " " + raw.getStandart() + " - " + raw.getNumber(),
 						count, 
-						SpecificationRowType.STANDART);
+						SpecificationRowType.STANDART, raw.getName(), raw.getNumber(), raw.getStandart());
 	}
 	
 	public static ISpecificationRow create(VzkDTO raw, long count) {
@@ -43,7 +43,7 @@ public interface ICompositeStructureCreator {
 						raw.getId(), 
 						raw.getName() + " " + raw.getNumber(),
 						count, 
-						SpecificationRowType.VZK);
+						SpecificationRowType.VZK, raw.getName(), raw.getName());
 	}
 	
 	public static ISpecificationRow create(BuyDTO raw, long count) {
@@ -52,7 +52,7 @@ public interface ICompositeStructureCreator {
 						raw.getId(), 
 						raw.getName() + " " + raw.getNumber() + " (" + raw.getManufacturer() + ")",
 						count, 
-						SpecificationRowType.BUY);
+						SpecificationRowType.BUY, raw.getName(), raw.getNumber(), raw.getManufacturer());
 	}
 	
 	public static SpecificationRowAssembly create(AssemblyDTO raw, long count) {

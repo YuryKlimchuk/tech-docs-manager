@@ -18,25 +18,38 @@
 						</form>
 					</td>
 					<td height="100px" align="center">
-						<h2>ГЛАВНОЕ МЕНЮ</h2>
-						<h4>(в разработке)</h4>
+						<nav class="main_menu">
+							<span class="main_menu"><a href="/specification-element" class="top_menu">Элементы спецификации</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><b><i>Маршруты</i></b>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
 					</td>
 					<td width="15%" height="100px" rowspan="2"></td>
 				</tr>
 				<tr>
 					<td align="center">
 						<p class="top_menu">
-							<span><b><i>Шаг 2 - Добавление заготовок</i></b></span>
+							<span><a href="/route" class="top_menu">Маршруты</a> - </span>
+							<span><a href="/route/edit-list" class="top_menu">Cписок для редактирования</a> - </span>
+							<span><b><i>Добавление нового элемента</i></b></span>
+						</p>
+						<p class="top_menu">
+							<span><a href="/route/edit-list/add-1" class="top_menu">Этап 1</a> - </span>
+							<span><b><i>Этап 2</i></b></span>
 						</p>
 					</td>
 				</tr>
 			</table>
-		
+			<br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br><br>		
 			<form th:method="'POST'">
-				<table>
+				<table style="width:50%">
 					<thead>
 						<tr>
-							<th colspan="4" th:text="'Заготовки'" />
+							<th colspan="4" th:text="'Добавление заготовок'" />
 						</tr>
 					</thead>
 					<tbody>
@@ -48,7 +61,7 @@
 											+ ${item['key'].material.number}" />
 							<td th:text="${item['value']}" />
 							<td>
-								<button th:name="'btnDeleteBlankRate'">Удалить</button>
+								<button th:name="'btnDeleteBlankRate'" th:value="${item['key'].id}">Удалить</button>
 							</td>
 						</tr>
 						<th:block>

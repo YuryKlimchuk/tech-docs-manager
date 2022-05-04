@@ -50,7 +50,7 @@ public class SpecificationFacade implements ISpecificationFacade {
 
 	@Override
 	public boolean removeProduct(ProductDTO product) {
-		if(products.containsKey(product)) return false;
+		if(!products.containsKey(product)) return false;
 		
 		products.remove(product);
 		return true;
@@ -177,6 +177,20 @@ public class SpecificationFacade implements ISpecificationFacade {
 		return getParts().stream()
 					.filter(p -> p.getSelectedRoute().getSelectedRate() == null)
 					.collect(Collectors.toList()).size() == 0 ? true : false;
+	}
+
+	@Override
+	public boolean setNewProductCount(long id, long newCount) {
+		
+		Optional<ProductDTO> product = getProductById(id);
+		if(product.isEmpty() || newCount < 1) return false;
+		
+		long oldValue = getProducts().get(product.get());
+		if(oldValue == newCount) return false;
+		
+		getProducts().put(product.get(), newCount);
+		
+		return true;
 	}
 
 }

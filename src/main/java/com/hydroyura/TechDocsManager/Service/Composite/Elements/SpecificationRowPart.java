@@ -10,8 +10,13 @@ public class SpecificationRowPart extends BaseSpecificationRow{
 	private List<RouteDTO> routes = new ArrayList<>();
 	private RouteDTO selectedRoute;
 	
-	public SpecificationRowPart(long id, String label, long count, SpecificationRowType type) {
+	private String name, number, status;
+	
+	public SpecificationRowPart(long id, String label, long count, SpecificationRowType type, String name, String number, String status) {
 		super(id, label, count, type);
+		this.name = name;
+		this.number = number;
+		this.status = status;
 	}
 
 	public List<RouteDTO> getRoutes() {
@@ -28,6 +33,20 @@ public class SpecificationRowPart extends BaseSpecificationRow{
 
 	public void setSelectedRoute(RouteDTO selectedRoute) {
 		this.selectedRoute = selectedRoute;
+	}
+	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getNumber() {
+		return number;
 	}
 	
 }

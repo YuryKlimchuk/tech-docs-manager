@@ -1,4 +1,4 @@
-package com.hydroyura.TechDocsManager.Controller.WEB.Product;
+package com.hydroyura.TechDocsManager.Controller.WEB.Product.Product;
 
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
@@ -23,6 +24,21 @@ public class ProductController extends AbstractController {
 	
 	@Autowired @Qualifier(value = "ProductService")
 	private ProductService service;
+	
+	@GetMapping(value = "")
+	public String indexGET() {
+		return "product/product/main";
+	}
+	
+	@PostMapping(value = "", params = "btnShow")
+	public String indexPOSTShow() {
+		return "redirect:/product/product/show-list";
+	}
+	
+	@PostMapping(value = "", params = "btnEdit")
+	public String indexPOSTEdit() {
+		return "redirect:/product/product/edit-list";
+	}
 
 	@GetMapping(value = "/show-list")
 	public String showListGET(Model model) {

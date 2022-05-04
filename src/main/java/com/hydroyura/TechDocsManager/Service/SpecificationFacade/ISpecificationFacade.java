@@ -16,6 +16,7 @@ public interface ISpecificationFacade {
 	public boolean addProduct(ProductDTO product, long count);
 	public boolean removeProduct(ProductDTO product);
 	public Optional<ProductDTO> getProductById(long id);
+	public boolean setNewProductCount(long id, long newCount);
 	public Optional<AssemblyDTO> getAssemblyById(long idAssembly, long idProduct);
 	
 	public boolean setSelectedAssembly(long idAssembly, long idProduct);

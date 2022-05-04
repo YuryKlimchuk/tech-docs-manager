@@ -7,7 +7,6 @@
 	</head>
 	<body>
 		<div align="center">
-		
 			<table style="width:100%; margin-bottom: 30px">
 				<tr>
 					<td width="15%" height="100px" rowspan="2">
@@ -18,25 +17,40 @@
 						</form>
 					</td>
 					<td height="100px" align="center">
-						<h2>ГЛАВНОЕ МЕНЮ</h2>
-						<h4>(в разработке)</h4>
+						<nav class="main_menu">
+							<span class="main_menu"><a href="/specification-element" class="top_menu">Элементы спецификации</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><b><i>Маршруты</i></b>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
+						</nav>
 					</td>
 					<td width="15%" height="100px" rowspan="2"></td>
 				</tr>
 				<tr>
 					<td align="center">
 						<p class="top_menu">
-							<span><b><i>Шаг 3 - Добавление операций</i></b></span>
+							<span><a href="/route" class="top_menu">Маршруты</a> - </span>
+							<span><a href="/route/edit-list" class="top_menu">Cписок для редактирования</a> - </span>
+							<span><b><i>Добавление нового элемента</i></b></span>
+						</p>
+						<p class="top_menu">
+							<span><a href="/route/edit-list/add-1" class="top_menu">Этап 1</a> - </span>
+							<span><a href="/route/edit-list/add-2" class="top_menu">Этап 2</a> - </span>
+							<span><b><i>Этап 3</i></b></span>
 						</p>
 					</td>
 				</tr>
 			</table>
+			<br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br><br>
 		
 			<form th:method="'POST'">
-				<table>
+				<table style="width:50%">
 					<thead>
 						<tr>
-							<th colspan="5" th:text="'Операции тех. процесса'" />
+							<th colspan="5" th:text="'Добавление операций в маршрут'" />
 						</tr>
 					</thead>
 					<tbody>
@@ -56,8 +70,6 @@
 	
 						<tr>
 							<td>
-								<!-- <input type="number" th:name="'index'"> -->
-								<!-- <th:block th:each="i: ${#numbers.sequence(1, 5)}"></th:block> -->
 								<select th:name="'index'">
 									<option th:each="index : ${#numbers.sequence(1, #lists.size(operations) + 1)}" 
 											th:text="${index}" 
@@ -83,8 +95,6 @@
 								<button th:name="'btnAddOperation'">Добавить</button>
 							</td>
 						</tr>
-	
-						
 						<tr>
 							<td colspan="5">
 								<button th:name="'btnNext'">Далее</button>	
@@ -96,10 +106,3 @@
 		</div>	
 	</body>
 </html>
-
-
-<!-- 
-
-
-
- -->

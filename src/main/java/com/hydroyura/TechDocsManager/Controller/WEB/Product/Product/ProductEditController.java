@@ -1,4 +1,4 @@
-package com.hydroyura.TechDocsManager.Controller.WEB.Product;
+package com.hydroyura.TechDocsManager.Controller.WEB.Product.Product;
 
 import java.util.HashMap;
 import java.util.Map;
