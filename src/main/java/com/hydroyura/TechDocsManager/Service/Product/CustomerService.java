@@ -1,5 +1,6 @@
 package com.hydroyura.TechDocsManager.Service.Product;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.Product.CustomerDTO;
+import com.hydroyura.TechDocsManager.Data.DTO.Product.ProductDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Product.CustomerEntity;
+import com.hydroyura.TechDocsManager.Data.Entity.Product.ProductEntity;
 
 @Service(value = "CustomerService")
 public class CustomerService implements ICustomerService {
@@ -20,6 +23,9 @@ public class CustomerService implements ICustomerService {
 	
 	@Autowired @Qualifier(value = "CustomerConverter")
 	private IConverter<CustomerEntity, CustomerDTO> customerConverter;
+	
+	@Autowired @Qualifier(value = "ProductConverter")
+	private IConverter<ProductEntity, ProductDTO> productConverter;
 
 	@Override
 	public Optional<CustomerDTO> getById(Long id) {
@@ -47,7 +53,10 @@ public class CustomerService implements ICustomerService {
 		customerRepository.deleteById(id);
 	}
 
-	
-
+	@Override
+	public Iterable<ProductDTO> getProducts(CustomerDTO customerDTO) {
+		Optional<CustomerEntity> customer = customerRepository.findById(customerDTO.getId());
+		return customer.isPresent() ? productConverter.convertListFromEntityToDto(customer.get().getProducts()) : new ArrayList<>();
+	}
 
 }

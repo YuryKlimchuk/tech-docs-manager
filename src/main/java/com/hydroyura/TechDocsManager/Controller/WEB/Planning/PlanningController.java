@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,7 @@ import com.hydroyura.TechDocsManager.Service.Composite.Visitor.VisitorOperation;
 import com.hydroyura.TechDocsManager.Service.DOCGenerator.IDOCGenerator;
 import com.hydroyura.TechDocsManager.Service.Product.IProductService;
 import com.hydroyura.TechDocsManager.Service.SpecificationFacade.ISpecificationFacade;
+
 
 @Controller
 @RequestMapping(value = "/planning")
@@ -93,9 +95,27 @@ public class PlanningController extends AbstractController {
 		
 		return "redirect:/planning/create-list";
 	}
-
+	
+	@PostMapping(value = "/create-list", params = "btnAcceptNewCount")
+	public String createListPOSTAcceptNewCount(
+			@RequestParam(name = "btnAcceptNewCount") long id, 
+			@RequestParam Map<String, String> params, RedirectAttributes redirectAttributes) {
+		
+		long newCount = -1;
+		
+		try {
+			newCount = Long.valueOf(params.get("newCount_" + String.valueOf(id)));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		if(newCount > 0) specificationFacade.setNewProductCount(id, newCount);
+		
+		return "redirect:/planning/create-list";
+	}
+	
 	@PostMapping(value = "/create-list", params = "btnDelete")
-	public String showCreateListPOSTDelete(@RequestParam(name = "btnDelete") long id, RedirectAttributes redirectAttributes) {
+	public String createListPOSTDelete(@RequestParam(name = "btnDelete") long id, RedirectAttributes redirectAttributes) {
 		
 		Optional<ProductDTO> product = productService.getById(id);
 		if(product.isPresent()) {
@@ -161,7 +181,11 @@ public class PlanningController extends AbstractController {
 			return "redirect:/planning/create-list";
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 		}
+		
+		
 		redirectAttributes.addFlashAttribute("msg", "Загрузить не удалось");
 		return "redirect:/planning/create-list";
 	}
@@ -233,6 +257,30 @@ public class PlanningController extends AbstractController {
 	@PostMapping(value = "create-list/select-assembly/expanded-specification", params = "btnRoute")
 	public String showExpandedSpecificationPOSTRoute(Model model) {
 		return "redirect:/planning/create-list/select-assembly/expanded-specification/select-route";
+	}
+	
+
+	@PostMapping(value = "create-list/select-assembly/expanded-specification", params = "btnDownload")
+	public ResponseEntity<?> showExpandedSpecificationPOSTDownload(Model model) {
+		try(ByteArrayOutputStream byteOut = new ByteArrayOutputStream();) {
+			
+			XWPFDocument document = docGenerator.generateSpecification(specificationFacade);
+			document.write(byteOut);
+			byteOut.toByteArray();
+			
+			return 
+					ResponseEntity
+						.ok()
+						.header(HttpHeaders.CONTENT_DISPOSITION, "test_file.docx") // Имя файла задается почему то по ULR
+						.contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+						.contentLength(byteOut.toByteArray().length)
+						.body(byteOut.toByteArray());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.badRequest().body(null);	
 	}
 	
 	
@@ -374,7 +422,7 @@ public class PlanningController extends AbstractController {
 		
 		try(ByteArrayOutputStream byteOut = new ByteArrayOutputStream();) {
 			
-			XWPFDocument document = docGenerator.generate(specificationFacade);
+			XWPFDocument document = docGenerator.generateSpecification(specificationFacade);
 			document.write(byteOut);
 			byteOut.toByteArray();
 			

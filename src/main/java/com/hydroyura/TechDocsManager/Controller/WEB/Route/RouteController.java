@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
@@ -26,11 +27,24 @@ public class RouteController extends AbstractController {
 	
 	
 	
+	@GetMapping
+	public String mainGET() {
+		return "route/main";
+	}
+	
+	@PostMapping(params = "btnShow")
+	public String mainPOSTShow() {
+		return "redirect:/route/show-list";
+	}
+
+	@PostMapping(params = "btnEdit")
+	public String mainPOSTEdit() {
+		return "redirect:/route/edit-list";
+	}
+	
 	@GetMapping(value = "/show-list")
 	public String showListGET(Model model) {
-		
 		model.addAttribute("routes", routeService.getAll());
-		
 		return "route/show_list";
 	}
 	

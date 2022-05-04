@@ -6,18 +6,17 @@
 		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
 	</head>
 	<body>
-		<h2>Создание техпроцесса - Шаг 5 (Результат добавления в БД)</h2>
-		
-		<form th:method="'POST'">
-
-		</form>
-		
+		<div align="center" style="width:50%">
+			<br><br>
+			<h2 class="redirect_msg" th:text="${msg}"></h2>
+			<br><br>
+			<form th:method="'POST'">
+				<p align="center">
+					<button th:name="'btnAddNew'" >Добавить еще маршрут</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<button th:name="'btnShowList'" >Просмотр списка маршрута</button>
+				</p>
+			</form>
+		</div>
 	</body>
 </html>
-
-
-<!-- 
-
-
-
- -->

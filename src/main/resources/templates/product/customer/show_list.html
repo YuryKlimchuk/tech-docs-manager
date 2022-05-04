@@ -6,8 +6,8 @@
 		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
 	</head>
 	<body>
-		<div align="center">
 		
+		<div align="center">
 			<table style="width:100%; margin-bottom: 30px">
 				<tr>
 					<td width="15%" height="100px" rowspan="2">
@@ -21,8 +21,8 @@
 						<nav class="main_menu">
 							<span class="main_menu"><a href="/specification-element" class="top_menu">Элементы спецификации</a>&nbsp;&nbsp;&nbsp;</span>
 							<span class="main_menu"><a href="/raw" class="top_menu">Заготовки</a>&nbsp;&nbsp;&nbsp;</span>
-							<span class="main_menu"><b><i>Маршруты</i></b>&nbsp;&nbsp;&nbsp;</span>
-							<span class="main_menu"><a href="/product" class="top_menu">Продукция</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><a href="/route" class="top_menu">Маршруты</a>&nbsp;&nbsp;&nbsp;</span>
+							<span class="main_menu"><b><i>Продукция</i></b>&nbsp;&nbsp;&nbsp;</span>
 							<span class="main_menu"><a href="/planning" class="top_menu">Планирование</a>&nbsp;&nbsp;&nbsp;</span>
 						</nav>
 					</td>
@@ -31,49 +31,57 @@
 				<tr>
 					<td align="center">
 						<p class="top_menu">
-							<span><a href="/route" class="top_menu">Маршруты</a> - </span>
-							<span><a href="/route/edit-list" class="top_menu">Cписок для редактирования</a> - </span>
-							<span><b><i>Добавление нового элемента</i></b></span>
-						</p>
-						<p class="top_menu">
-							<span><b><i>Этап 1</i></b></span>
+							<span><a href="/product" class="top_menu">Продукция</a> - </span>
+							<span><a href="/product/customer" class="top_menu">Клиенты</a> - </span>  
+							<span><b><i>Список для просмотра</i></b></span>
 						</p>
 					</td>
 				</tr>
 			</table>
+
+			<table style="width:50%">
+				<tr>
+					<th colspan="2" th:text="'Фильтр поиска (в разработке)'" />
+				</tr>
+				<tr>
+					<td>Критерий 1</td>
+					<td>Занчение 1</td>
+				</tr>
+				<tr>
+					<td>Критерий 2</td>
+					<td>Занчение 2</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button style="width: 20%">Найти</button>
+					</td>
+				</tr>
+			</table>
 			<br><br>
+			<br><br><br>
 			<h2 class="redirect_msg" th:text="${msg}"></h2>
-			<br><br>
+			<br>
 			<form th:method="'POST'">
 				<table style="width:50%">
 					<thead>
 						<tr>
-							<th colspan="2" th:text="'Ввод обозначения и выбор детали'"/>
+							<th th:text="'№'" />
+							<th th:text="'Потребитель'" />
+							<th th:text="'Страна'" />
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td th:text="'Обозначение маршрута'" />
+						<tr th:each="item, iterator : ${items}">
+							<td th:text="${iterator.count}"/>
 							<td>
-								<input type="text" th:value="${number}" th:name="'number'"/>
+								<a th:href="@{/product/customer/show-list/{id}(id=${item.id})}" target="_blank"><span th:text="${item.number}"></span></a>
 							</td>
-						</tr>	
-						<tr>
-							<td th:text="'Деталь'" />
-							<td>
-								<select th:name="'partId'">
-									<option th:each="item, iterator : ${parts}" th:text="${item.number} + ' ' + ${item.name}" th:value="${item.id}" />
-								</select>
-							</td>
-						</tr>	
-						<tr>
-							<td colspan="2">
-								<button th:name="'btnNext'">Далее</button>
-							</td>
-						</tr>		
+							<td th:text="${item.name}"/>
+						</tr>
 					</tbody>
 				</table>
 			</form>
+
 		</div>
 	</body>
 </html>

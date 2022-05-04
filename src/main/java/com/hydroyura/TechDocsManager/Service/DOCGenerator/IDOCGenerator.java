@@ -7,6 +7,6 @@ import com.hydroyura.TechDocsManager.Service.SpecificationFacade.ISpecificationF
 public interface IDOCGenerator {
 	
 	
-	public XWPFDocument generate(ISpecificationFacade specificationFacade);
+	public XWPFDocument generateSpecification(ISpecificationFacade specificationFacade);
 
 }
