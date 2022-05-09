@@ -1,5 +1,7 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.Part;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.Abstrac
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.Specification.Factory.IFilterFactory;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 
@@ -19,10 +22,11 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 public class PartEditController extends AbstractSpecificationElementEditController<PartDTO, PartEntity> {
 
 	@Autowired
-	public PartEditController(@Qualifier(value = "PartService") AbstractSpecificationElementService<PartDTO, PartEntity, Long> service,
-							 @Qualifier(value = "PartDTOFactory") IDTOFactory<PartDTO> dtoFactory) {
+	public PartEditController(@Qualifier(value = "PartService") AbstractSpecificationElementService<PartDTO, PartEntity> service,
+							 @Qualifier(value = "PartDTOFactory") IDTOFactory<PartDTO> dtoFactory,
+							 @Qualifier(value = "PartFilterFactory") IFilterFactory<PartEntity> filterFactory) {
 		
-		super(service, dtoFactory);
+		super(service, dtoFactory, filterFactory);
 	}
 	
 	@PostConstruct
@@ -36,6 +40,17 @@ public class PartEditController extends AbstractSpecificationElementEditControll
 		this.REDIRECT_EDIT_LIST_ADD_1 = "redirect:/specification-element/part/edit-list/add-1";
 		this.REDIRECT_EDIT_LIST = "redirect:/specification-element/part/edit-list";
 		this.REDIRECT_EDIT_LIST_ACCEPT_DELETE = "redirect:/specification-element/part/edit-list/accept-delete/";
+	}
+	
+	@Override
+	public String editListPOSTSearch(Map<String, String> searchParamsReturned) {
+		String name = searchParamsReturned.containsKey("name") ? searchParamsReturned.get("name") : "";
+		String number = searchParamsReturned.containsKey("number") ? searchParamsReturned.get("number") : "";
+		
+		this.searchParams.put("name", name);
+		this.searchParams.put("number", number);
+		
+		return super.editListPOSTSearch(searchParams);
 	}
 
 }

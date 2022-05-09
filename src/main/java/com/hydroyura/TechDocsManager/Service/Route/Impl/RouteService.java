@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -165,6 +166,12 @@ public class RouteService implements IRouteService {
 	@Override
 	public void deleteById(Long id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public Iterable<RouteDTO> getAll(Specification<Long> specification) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

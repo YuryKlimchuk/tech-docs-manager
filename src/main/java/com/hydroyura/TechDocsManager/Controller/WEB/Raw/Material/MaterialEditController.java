@@ -16,15 +16,15 @@ import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialTypeEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/material")
 public class MaterialEditController extends AbstractRawEditController<MaterialDTO, MaterialEntity, MaterialTypeDTO, MaterialTypeEntity> {
 
 	
 	@Autowired
 	public MaterialEditController(
-			@Qualifier(value = "MaterialService") AbstractSpecificationElementService<MaterialDTO, MaterialEntity, Long> service,
-			@Qualifier(value = "MaterialTypeService") AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity, Long> typeService,
+			@Qualifier(value = "MaterialService") AbstractSpecificationElementService<MaterialDTO, MaterialEntity> service,
+			@Qualifier(value = "MaterialTypeService") AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity> typeService,
 			@Qualifier(value = "MaterialDTOFactory") IDTOFactory<MaterialDTO> dtoFactory) {
 		super(service, typeService, dtoFactory);
 	}

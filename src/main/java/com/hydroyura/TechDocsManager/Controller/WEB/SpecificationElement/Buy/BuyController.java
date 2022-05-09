@@ -18,8 +18,8 @@ public class BuyController extends AbstractSpecificationElementController<BuyDTO
 
 	
 	@Autowired
-	public BuyController(@Qualifier(value = "BuyService") AbstractSpecificationElementService<BuyDTO, BuyEntity, Long> service) {
-		super(service);
+	public BuyController(@Qualifier(value = "BuyService") AbstractSpecificationElementService<BuyDTO, BuyEntity> service) {
+		super(service, null);
 	}
 	
 	@PostConstruct

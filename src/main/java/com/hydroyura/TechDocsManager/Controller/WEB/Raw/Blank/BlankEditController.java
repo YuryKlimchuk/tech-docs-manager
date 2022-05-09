@@ -22,18 +22,18 @@ import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/blank")
 public class BlankEditController extends AbstractController {
 	
 	@Autowired @Qualifier(value = "BlankService")
-	private AbstractSpecificationElementService<BlankDTO, BlankEntity, Long> blankService;
+	private AbstractSpecificationElementService<BlankDTO, BlankEntity> blankService;
 	
 	@Autowired @Qualifier(value = "SortamentService")
-	private AbstractSpecificationElementService<SortamentDTO, SortamentEntity, Long> sortamentService;
+	private AbstractSpecificationElementService<SortamentDTO, SortamentEntity> sortamentService;
 	
 	@Autowired @Qualifier(value = "MaterialService")
-	private AbstractSpecificationElementService<MaterialDTO, MaterialEntity, Long> materialService;
+	private AbstractSpecificationElementService<MaterialDTO, MaterialEntity> materialService;
 	
 	// может и не нужно????
 	@Autowired @Qualifier(value = "BlankDTOFactory")

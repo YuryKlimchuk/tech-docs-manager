@@ -26,6 +26,7 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyEn
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.Specification.Factory.IFilterFactory;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.Composite.ICompositeUtilities;
 import com.hydroyura.TechDocsManager.Service.Composite.Create.ICompositeStructureCreator;
@@ -60,8 +61,10 @@ public class AssemblyController extends AbstractSpecificationElementController<A
 	
 	
 	@Autowired
-	public AssemblyController(@Qualifier(value = "AssemblyService") AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long> service) {
-		super(service);
+	public AssemblyController(@Qualifier(value = "AssemblyService") AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity> service,
+							  @Qualifier(value = "AssemblyFilterFactory") IFilterFactory<AssemblyEntity> filterFactory) {
+
+		super(service, filterFactory);
 	}
 	
 	@PostConstruct
@@ -71,6 +74,18 @@ public class AssemblyController extends AbstractSpecificationElementController<A
 		this.HTML_SHOW_LIST = "specification_element/assembly/show_list";
 		
 		this.REDIRECT_SHOW_LIST = "redirect:/specification-element/assembly/show-list/";
+	}
+	
+	@Override
+	public String showListPOSTSearch(Map<String, String> searchParamsReturned) {
+		
+		String name = searchParamsReturned.containsKey("name") ? searchParamsReturned.get("name") : "";
+		String number = searchParamsReturned.containsKey("number") ? searchParamsReturned.get("number") : "";
+		
+		this.searchParams.put("name", name);
+		this.searchParams.put("number", number);
+		
+		return super.showListPOSTSearch(searchParams);
 	}
 
 	@Override

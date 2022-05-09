@@ -11,15 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hydroyura.TechDocsManager.Data.DTO.Product.ProductDTO;
@@ -84,10 +81,10 @@ public class PlanningTestIntegrateTesting {
 	private IOperationTypeService operationTypeService;
 
 	@Autowired @Qualifier(value = "PartService")
-	private AbstractSpecificationElementService<PartDTO, PartEntity, Long> partService;
+	private AbstractSpecificationElementService<PartDTO, PartEntity> partService;
 	
 	@Autowired @Qualifier(value = "AssemblyService")
-	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long> assemblyService;
+	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity> assemblyService;
 	
 	@Autowired @Qualifier(value = "AssemblyPartRateService")
 	private AbstractAssemblyRateService<PartEntity, PartDTO> partRateService;
@@ -98,19 +95,19 @@ public class PlanningTestIntegrateTesting {
 	
 
 	@Autowired @Qualifier(value = "MaterialTypeService")
-	private AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity, Long> materialTypeService;
+	private AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity> materialTypeService;
 
 	@Autowired @Qualifier(value = "SortamentTypeService")
-	private AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity, Long> sortamentTypeService;
+	private AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity> sortamentTypeService;
 	
 	@Autowired @Qualifier(value = "SortamentService")
-	private AbstractSpecificationElementService<SortamentDTO, SortamentEntity, Long> sortamentService;
+	private AbstractSpecificationElementService<SortamentDTO, SortamentEntity> sortamentService;
 	
 	@Autowired @Qualifier(value = "MaterialService")
-	private AbstractSpecificationElementService<MaterialDTO, MaterialEntity, Long> materialService;
+	private AbstractSpecificationElementService<MaterialDTO, MaterialEntity> materialService;
 	
 	@Autowired @Qualifier(value = "BlankService")
-	private AbstractSpecificationElementService<BlankDTO, BlankEntity, Long> blankService;
+	private AbstractSpecificationElementService<BlankDTO, BlankEntity> blankService;
 	
 	@Autowired @Qualifier(value = "RouteService")
 	private IRouteService routeService;

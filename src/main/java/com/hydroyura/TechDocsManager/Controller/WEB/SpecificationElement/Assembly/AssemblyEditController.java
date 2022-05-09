@@ -1,5 +1,6 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.Assembly;
 
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,7 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.BuyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.Specification.Factory.IFilterFactory;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.SpecificationElement.AssemblyRate.AbstractAssemblyRateService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
@@ -55,23 +57,25 @@ public class AssemblyEditController extends AbstractSpecificationElementEditCont
 	
 	
 	@Autowired @Qualifier(value = "PartService")
-	private AbstractSpecificationElementService<PartDTO, PartEntity, Long> partService;
+	private AbstractSpecificationElementService<PartDTO, PartEntity> partService;
 	
 	@Autowired @Qualifier(value = "StandartService")
-	private AbstractSpecificationElementService<StandartDTO, StandartEntity, Long> standartService;
+	private AbstractSpecificationElementService<StandartDTO, StandartEntity> standartService;
 	
 	@Autowired @Qualifier(value = "VzkService")
-	private AbstractSpecificationElementService<VzkDTO, VzkEntity, Long> vzkService;
+	private AbstractSpecificationElementService<VzkDTO, VzkEntity> vzkService;
 	
 	@Autowired @Qualifier(value = "BuyService")
-	private AbstractSpecificationElementService<BuyDTO, BuyEntity, Long> buyService;
+	private AbstractSpecificationElementService<BuyDTO, BuyEntity> buyService;
 	
 	
 	
 	@Autowired
-	public AssemblyEditController(@Qualifier(value = "AssemblyService") AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long> service, 
-								  @Qualifier(value = "AssemblyDTOFactory") IDTOFactory<AssemblyDTO> dtoFactory) {
-		super(service, dtoFactory);
+	public AssemblyEditController(@Qualifier(value = "AssemblyService") AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity> service, 
+								  @Qualifier(value = "AssemblyDTOFactory") IDTOFactory<AssemblyDTO> dtoFactory,
+								  @Qualifier(value = "AssemblyFilterFactory") IFilterFactory<AssemblyEntity> filterFactory) {
+		
+		super(service, dtoFactory, filterFactory);
 	}
 
 	
@@ -88,6 +92,20 @@ public class AssemblyEditController extends AbstractSpecificationElementEditCont
 		this.REDIRECT_EDIT_LIST_ACCEPT_DELETE = "redirect:/specification-element/assembly/edit-list/accept-delete/";
 	}
 	
+	
+	
+	@Override
+	public String editListPOSTSearch(Map<String, String> searchParamsReturned) {
+		String name = searchParamsReturned.containsKey("name") ? searchParamsReturned.get("name") : "";
+		String number = searchParamsReturned.containsKey("number") ? searchParamsReturned.get("number") : "";
+		
+		this.searchParams.put("name", name);
+		this.searchParams.put("number", number);
+		
+		return super.editListPOSTSearch(searchParams);
+	}
+
+
 	@PostMapping(value = "/edit-list/{strId}/edit-1", params = "btnEditSpec")
 	public String editListEdit1POSTeditSpec(@PathVariable("strId") String strId, RedirectAttributes redirectAttributes, Model model) {
 		// Какуюто верификацию добавить
@@ -104,11 +122,11 @@ public class AssemblyEditController extends AbstractSpecificationElementEditCont
 		model.addAttribute("assembly", service.getById(IDValidator.convertFromStringToLong(strId)).get());
 		
 		
-		model.addAttribute("assembliesForAdding", service.getAll());
-		model.addAttribute("partsForAdding", partService.getAll());
-		model.addAttribute("standartsForAdding", standartService.getAll());
-		model.addAttribute("vzksForAdding", vzkService.getAll());
-		model.addAttribute("buysForAdding", buyService.getAll());
+		model.addAttribute("assembliesForAdding", service.getAll(null));
+		model.addAttribute("partsForAdding", partService.getAll(null));
+		model.addAttribute("standartsForAdding", standartService.getAll(null));
+		model.addAttribute("vzksForAdding", vzkService.getAll(null));
+		model.addAttribute("buysForAdding", buyService.getAll(null));
 		
 		// assemblies
 		model.addAttribute("assemblies", assemblyAssemblyRateService.getByAssembly(assemblyRoot.get()));
@@ -271,32 +289,10 @@ public class AssemblyEditController extends AbstractSpecificationElementEditCont
 		
 		return "redirect:/specification-element/assembly/edit-list/" + strId + "/edit-1/edit-specification";
 	}
-	
-	
-	/*
-	 
-	 	model.addAttribute("assemblies", assemblyAssemblyRateService.getByAssembly(assemblyRoot.get()));
-		model.addAttribute("parts", assemblyPartRateService.getByAssembly(assemblyRoot.get()));
-		model.addAttribute("standarts", assemblyStandartRateService.getByAssembly(assemblyRoot.get()));
-		model.addAttribute("vzks", assemblyVzkRateService.getByAssembly(assemblyRoot.get()));
-		model.addAttribute("buys", assemblyBuyRateService.getByAssembly(assemblyRoot.get()));
-	 
-	 
-	 
-	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	private<E, D> String addItemToSpecification(long count, String strId, long addingItemId, RedirectAttributes redirectAttributes,
-												AbstractSpecificationElementService<D, E, Long> service1,
+												AbstractSpecificationElementService<D, E> service1,
 												AbstractAssemblyRateService<E, D> service2) {
 		
 		Optional<AssemblyDTO> assemblyRoot = service.getById(IDValidator.convertFromStringToLong(strId));
@@ -324,12 +320,6 @@ public class AssemblyEditController extends AbstractSpecificationElementEditCont
 		return "redirect:/specification-element/assembly/edit-list/" + strId + "/edit-1/edit-specification";
 
 	}
-	
-	
-	
-	
-	
-	
 	
 	private<E, D> String deleteItemFromSpecification(AbstractAssemblyRateService<E, D> service, 
 													 String strId, long deletingId,

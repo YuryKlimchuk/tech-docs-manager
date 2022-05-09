@@ -1,7 +1,5 @@
 package com.hydroyura.TechDocsManager.Utils.DocxFileCreator;
 
-import java.util.ArrayList;
-
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;

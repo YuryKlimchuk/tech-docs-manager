@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.MaterialTypeDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentTypeDTO;
-import com.hydroyura.TechDocsManager.Data.DTO.Route.EquipmentDTO;
-import com.hydroyura.TechDocsManager.Data.DTO.Route.OperationTypeDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.BuyDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
@@ -29,7 +27,6 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 import com.hydroyura.TechDocsManager.Service.Product.ICustomerService;
 import com.hydroyura.TechDocsManager.Service.Route.IEquipmentService;
 import com.hydroyura.TechDocsManager.Service.Route.IOperationTypeService;
-import com.hydroyura.TechDocsManager.Service.Route.Impl.EquipmentService;
 
 @Component
 public class UnitBD {
@@ -38,26 +35,26 @@ public class UnitBD {
 	private ICustomerService customerService;
 	
 	@Autowired @Qualifier(value = "AssemblyService")
-	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long> assemblyService;
+	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity> assemblyService;
 	
 	@Autowired @Qualifier(value = "PartService")
-	private AbstractSpecificationElementService<PartDTO, PartEntity, Long> partService;
+	private AbstractSpecificationElementService<PartDTO, PartEntity> partService;
 	
 	@Autowired @Qualifier(value = "StandartService")
-	private AbstractSpecificationElementService<StandartDTO, StandartEntity, Long> standartService;
+	private AbstractSpecificationElementService<StandartDTO, StandartEntity> standartService;
 	
 	@Autowired @Qualifier(value = "VzkService")
-	private AbstractSpecificationElementService<VzkDTO, VzkEntity, Long> vzkService;
+	private AbstractSpecificationElementService<VzkDTO, VzkEntity> vzkService;
 	
 	@Autowired @Qualifier(value = "BuyService")
-	private AbstractSpecificationElementService<BuyDTO, BuyEntity, Long> buyService;
+	private AbstractSpecificationElementService<BuyDTO, BuyEntity> buyService;
 	
 
 	@Autowired @Qualifier(value = "MaterialTypeService")
-	private AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity, Long> materialTypeService;
+	private AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity> materialTypeService;
 	
 	@Autowired @Qualifier(value = "SortamentTypeService")
-	private AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity, Long> sortamentTypeService;
+	private AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity> sortamentTypeService;
 	
 	
 	@Autowired @Qualifier(value = "OperationTypeService")
@@ -215,6 +212,7 @@ public class UnitBD {
 		buyService.save(new BuyDTO("EAAB.303635.001/014", "Фланец", "Технопривод"));
 		buyService.save(new BuyDTO("EAAB.303635.001/006", "Муфта", "Технопривод"));
 		*/
+		//buyService.save(new BuyDTO("KL6D", "Шарнирная головка", "LFD"));
 		
 		//buyService.save(new BuyDTO("ЛБИЕ.423212.008 ГЧ", "Электромагнит пропорциональный ЭП-01", "Измеритель"));
 		//buyService.save(new BuyDTO("ЛБИЕ.423212.009 ГЧ", "Электромагнит пропорциональный ЭП-02", "Измеритель"));
@@ -291,9 +289,21 @@ public class UnitBD {
 		//partService.save(new PartDTO(0, "RGR100-11501", "Золотник", "Серия"));
 		//partService.save(new PartDTO(0, "RGR100-11502", "Шайба", "Серия"));
 		
+		
 		/*
-		partService.save(new PartDTO(0, "RGR100-15003", "Пружина", "Серия"));
-		partService.save(new PartDTO(0, "RGR100-15006", "Стакан", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15004", "Плита", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15005", "Кронштейн", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15006", "Кронштейн", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15007", "Опора", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15008", "Ось", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15010", "Ось", "Серия"));
+		partService.save(new PartDTO(0, "RGR100-15011", "Пыльник", "Серия"));
+		*/
+		
+		
+		/*
+		partService.save(new PartDTO(0, "RGG100-15003", "Пружина", "Серия"));
+		partService.save(new PartDTO(0, "RGG100-15006", "Стакан", "Серия"));
 				
 		partService.save(new PartDTO(0, "RGR100-30002", "Стакан", "Серия"));
 		partService.save(new PartDTO(0, "RGR100-30003-09", "Обойма", "Серия"));
@@ -473,9 +483,13 @@ public class UnitBD {
 		//standartService.save(new StandartDTO("Шайба", "B10-Zn", "DIN 127"));
 		//standartService.save(new StandartDTO("Шайба", "B6-Zn", "DIN 127"));
 		//standartService.save(new StandartDTO("Шайба", "12Т 65Г 019", "ГОСТ 6402-70"));
+		//standartService.save(new StandartDTO("Шайба", "5,3-Zn", "DIN 9021"));
+		//standartService.save(new StandartDTO("Шайба", "4,3-Zn", "DIN 433"));
 		
 		//standartService.save(new StandartDTO("Гайка", "M10-10-Zn", "DIN 934"));
 		//standartService.save(new StandartDTO("Гайка", "M12,5x1,5-10-Zn", "DIN 934"));
+		//standartService.save(new StandartDTO("Гайка", "M4-10-Zn", "DIN 555"));
+		//standartService.save(new StandartDTO("Гайка", "M8-10-Zn", "DIN 439"));
 		
 		//standartService.save(new StandartDTO("Гайка", "M5-6H.5 (S8)", "ГОСТ 5915-70"));
 		//standartService.save(new StandartDTO("Кольцо", "A8", "ГОСТ 13943-86"));

@@ -6,15 +6,27 @@ import java.util.Optional;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.BaseRepositoryWithSpecification;
 
-public abstract class AbstractSpecificationElementService<D, E, I> implements IBaseService<D, I> {
+public abstract class AbstractSpecificationElementService<D, E> implements IBaseService<D, E> {
 	
 	protected IConverter<E, D> converter;
-	protected JpaRepository<E, I> repository;
+	protected BaseRepositoryWithSpecification<E> repository;
 
+	@Override
+	public final Iterable<D> getAll(Specification<E> specification) {
+		try {
+			return converter.convertListFromEntityToDto(repository.findAll(specification));
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		
+		return new HashSet<>();
+	}
+	
 	@Override
 	public final Iterable<D> getAll() {
 		try {
@@ -27,7 +39,7 @@ public abstract class AbstractSpecificationElementService<D, E, I> implements IB
 	}
 
 	@Override
-	public final Optional<D> getById(I id) {
+	public final Optional<D> getById(Long id) {
 		Optional<E> entity = repository.findById(id);
 		
 		if(entity.isPresent()) return Optional.of(converter.convertFromEntityToDto(entity.get()));
@@ -50,7 +62,7 @@ public abstract class AbstractSpecificationElementService<D, E, I> implements IB
 	}
 
 	@Override
-	public void deleteById(I id) {
+	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
 	

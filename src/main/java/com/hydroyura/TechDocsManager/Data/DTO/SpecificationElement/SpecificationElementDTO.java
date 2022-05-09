@@ -13,11 +13,8 @@ public abstract class SpecificationElementDTO {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDate update = LocalDate.now();
-	
-	
+
 	public SpecificationElementDTO() {}
-	
-	
 	
 	public long getId() {
 		return id;
@@ -60,5 +57,5 @@ public abstract class SpecificationElementDTO {
 	public void setPdf(byte[] pdf) {
 		this.pdf = pdf;
 	}
-	
+
 }

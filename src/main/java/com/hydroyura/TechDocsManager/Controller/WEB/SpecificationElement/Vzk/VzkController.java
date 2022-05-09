@@ -18,8 +18,8 @@ public class VzkController extends AbstractSpecificationElementController<VzkDTO
 
 	
 	@Autowired
-	public VzkController(@Qualifier(value = "VzkService") AbstractSpecificationElementService<VzkDTO, VzkEntity, Long> service) {
-		super(service);
+	public VzkController(@Qualifier(value = "VzkService") AbstractSpecificationElementService<VzkDTO, VzkEntity> service) {
+		super(service, null);
 	}
 	
 	@PostConstruct

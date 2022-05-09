@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentTypeDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentTypeEntity;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.BaseRepositoryWithSpecification;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
 @Service(value = "SortamentTypeService")
-public class SortamentTypeService extends AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity, Long> {
+public class SortamentTypeService extends AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity> {
 	
 	
 	@Autowired
 	public SortamentTypeService(			
-			@Qualifier(value = "SortamentTypeRepository") JpaRepository<SortamentTypeEntity, Long> repository,
+			@Qualifier(value = "SortamentTypeRepository") BaseRepositoryWithSpecification<SortamentTypeEntity> repository,
 			@Qualifier(value = "SortamentTypeConverter") IConverter<SortamentTypeEntity, SortamentTypeDTO> converter) {
 		this.converter = converter;
 		this.repository = repository;

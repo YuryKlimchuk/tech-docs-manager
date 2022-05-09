@@ -19,7 +19,7 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 public class BuyEditController extends AbstractSpecificationElementEditController<BuyDTO, BuyEntity> {
 
 	@Autowired
-	public BuyEditController(@Qualifier(value = "BuyService") AbstractSpecificationElementService<BuyDTO, BuyEntity, Long> service,
+	public BuyEditController(@Qualifier(value = "BuyService") AbstractSpecificationElementService<BuyDTO, BuyEntity> service,
 							 @Qualifier(value = "BuyDTOFactory") IDTOFactory<BuyDTO> dtoFactory) {
 		
 		super(service, dtoFactory);

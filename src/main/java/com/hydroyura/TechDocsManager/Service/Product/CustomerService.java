@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,12 @@ public class CustomerService implements ICustomerService {
 	public Iterable<ProductDTO> getProducts(CustomerDTO customerDTO) {
 		Optional<CustomerEntity> customer = customerRepository.findById(customerDTO.getId());
 		return customer.isPresent() ? productConverter.convertListFromEntityToDto(customer.get().getProducts()) : new ArrayList<>();
+	}
+
+	@Override
+	public Iterable<CustomerDTO> getAll(Specification<Long> specification) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

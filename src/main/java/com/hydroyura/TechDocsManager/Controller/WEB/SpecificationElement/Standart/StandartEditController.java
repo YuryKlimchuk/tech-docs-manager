@@ -19,7 +19,7 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 public class StandartEditController extends AbstractSpecificationElementEditController<StandartDTO, StandartEntity> {
 
 	@Autowired
-	public StandartEditController(@Qualifier(value = "StandartService") AbstractSpecificationElementService<StandartDTO, StandartEntity, Long> service,
+	public StandartEditController(@Qualifier(value = "StandartService") AbstractSpecificationElementService<StandartDTO, StandartEntity> service,
 							      @Qualifier(value = "StandartDTOFactory") IDTOFactory<StandartDTO> dtoFactory) {
 		
 		super(service, dtoFactory);
