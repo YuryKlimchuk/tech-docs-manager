@@ -19,7 +19,7 @@ import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService
 public class VzkEditController extends AbstractSpecificationElementEditController<VzkDTO, VzkEntity> {
 
 	@Autowired
-	public VzkEditController(@Qualifier(value = "VzkService") AbstractSpecificationElementService<VzkDTO, VzkEntity, Long> service,
+	public VzkEditController(@Qualifier(value = "VzkService") AbstractSpecificationElementService<VzkDTO, VzkEntity> service,
 							 @Qualifier(value = "VzkDTOFactory") IDTOFactory<VzkDTO> dtoFactory) {
 		
 		super(service, dtoFactory);

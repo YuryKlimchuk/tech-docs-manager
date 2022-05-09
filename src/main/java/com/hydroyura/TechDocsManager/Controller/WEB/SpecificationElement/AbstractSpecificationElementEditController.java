@@ -1,5 +1,7 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.IDTOFactory;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.Specification.Factory.IFilterFactory;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Utils.IDValidator;
 
@@ -15,7 +18,7 @@ public abstract class AbstractSpecificationElementEditController<DTO, Entity> ex
 
 	private IDTOFactory<DTO> dtoFactory;
 	
-	protected AbstractSpecificationElementService<DTO, Entity, Long> service;
+	protected AbstractSpecificationElementService<DTO, Entity> service;
 	
 	protected String HTML_EDIT_LIST;
 	protected String HTML_EDIT_LIST_ADD_1;
@@ -26,21 +29,44 @@ public abstract class AbstractSpecificationElementEditController<DTO, Entity> ex
 	protected String REDIRECT_EDIT_LIST;
 	protected String REDIRECT_EDIT_LIST_ACCEPT_DELETE;
 	
-	
+	protected Map<String, String> searchParams = new HashMap<>();
+	protected IFilterFactory<Entity> filterFactory;
 
 	
 	
-	public AbstractSpecificationElementEditController(AbstractSpecificationElementService<DTO, Entity, Long> service, IDTOFactory<DTO> dtoFactory) {
+	public AbstractSpecificationElementEditController(AbstractSpecificationElementService<DTO, Entity> service, IDTOFactory<DTO> dtoFactory, IFilterFactory<Entity> filterFactory) {
 		this.service = service;
 		this.dtoFactory = dtoFactory;
+		this.filterFactory = filterFactory;
 	}
 	
+	// Удалить
+	public AbstractSpecificationElementEditController(AbstractSpecificationElementService<DTO, Entity> service, IDTOFactory<DTO> dtoFactory) {
+		this.service = service;
+		this.dtoFactory = dtoFactory;
+		this.filterFactory = null;
+	}
 	
 	@Override
 	public String editListGET(Model model) {
-		model.addAttribute("items", service.getAll());
+		model.addAttribute("searchParams", searchParams);
+		
+		if(filterFactory == null) {
+			model.addAttribute("items", service.getAll());
+		} else {
+			model.addAttribute("items", service.getAll(filterFactory.create(searchParams).getSpecification()));
+		}
+		
 		return this.HTML_EDIT_LIST;
 	}
+
+	
+	
+	@Override
+	public String editListPOSTSearch(Map<String, String> searchParams) {
+		return REDIRECT_EDIT_LIST;
+	}
+
 
 	@Override
 	public String editListPOSTAdd() {

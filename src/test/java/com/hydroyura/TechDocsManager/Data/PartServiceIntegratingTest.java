@@ -1,8 +1,8 @@
 package com.hydroyura.TechDocsManager.Data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -30,7 +30,7 @@ public class PartServiceIntegratingTest {
 	private MockMvc mockMvc;
 	
 	@Autowired 
-	private AbstractSpecificationElementService<PartDTO, PartEntity, Long> partService;
+	private AbstractSpecificationElementService<PartDTO, PartEntity> partService;
 	
 	
 	

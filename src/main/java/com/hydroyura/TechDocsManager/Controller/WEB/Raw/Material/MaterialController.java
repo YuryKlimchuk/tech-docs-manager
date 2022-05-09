@@ -12,14 +12,14 @@ import com.hydroyura.TechDocsManager.Data.DTO.Raw.MaterialDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/material")
 public class MaterialController extends AbstractSpecificationElementController<MaterialDTO, MaterialEntity> {
 
 	@Autowired
 	public MaterialController(
-			@Qualifier(value = "MaterialService") AbstractSpecificationElementService<MaterialDTO, MaterialEntity, Long> service) {
-		super(service);
+			@Qualifier(value = "MaterialService") AbstractSpecificationElementService<MaterialDTO, MaterialEntity> service) {
+		super(service, null);
 	}
 	
 	

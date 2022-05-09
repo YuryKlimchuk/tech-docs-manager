@@ -14,8 +14,8 @@ public abstract class AbstractRawEditController<DTO, Entity, DTOType, EntityType
 
 	private IDTOFactory<DTO> dtoFactory;
 	
-	protected AbstractSpecificationElementService<DTO, Entity, Long> service;
-	protected AbstractSpecificationElementService<DTOType, EntityType, Long> typeService;
+	protected AbstractSpecificationElementService<DTO, Entity> service;
+	protected AbstractSpecificationElementService<DTOType, EntityType> typeService;
 	
 
 	protected String LABEL;
@@ -24,7 +24,7 @@ public abstract class AbstractRawEditController<DTO, Entity, DTOType, EntityType
 
 	
 	
-	public AbstractRawEditController(AbstractSpecificationElementService<DTO, Entity, Long> service, AbstractSpecificationElementService<DTOType, EntityType, Long> typeService, IDTOFactory<DTO> dtoFactory) {
+	public AbstractRawEditController(AbstractSpecificationElementService<DTO, Entity> service, AbstractSpecificationElementService<DTOType, EntityType> typeService, IDTOFactory<DTO> dtoFactory) {
 		this.service = service;
 		this.typeService = typeService;
 		this.dtoFactory = dtoFactory;

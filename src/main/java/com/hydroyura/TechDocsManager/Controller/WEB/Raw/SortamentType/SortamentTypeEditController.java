@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement.AbstractSpecificationElementEditController;
@@ -13,7 +12,7 @@ import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.ID
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentTypeEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/sortament-type")
 public class SortamentTypeEditController extends AbstractSpecificationElementEditController<SortamentTypeDTO, SortamentTypeEntity>{
 
@@ -21,7 +20,7 @@ public class SortamentTypeEditController extends AbstractSpecificationElementEdi
 	
 	@Autowired
 	public SortamentTypeEditController(
-			@Qualifier(value = "SortamentTypeService") AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity, Long> service,
+			@Qualifier(value = "SortamentTypeService") AbstractSpecificationElementService<SortamentTypeDTO, SortamentTypeEntity> service,
 			@Qualifier(value = "SortamentTypeDTOFactory") IDTOFactory<SortamentTypeDTO> dtoFactory) {
 		
 		super(service, dtoFactory);

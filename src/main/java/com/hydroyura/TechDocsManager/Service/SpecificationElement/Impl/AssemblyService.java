@@ -20,11 +20,12 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.BuyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
+import com.hydroyura.TechDocsManager.Data.Repository.SpecificationElement.BaseRepositoryWithSpecification;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 import com.hydroyura.TechDocsManager.Service.SpecificationElement.AssemblyRate.AbstractAssemblyRateService;
 
 @Service(value = "AssemblyService")
-public class AssemblyService extends AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long>{
+public class AssemblyService extends AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity>{
 		
 	
 	@Autowired @Qualifier(value = "AssemblyBuyRateService")
@@ -46,7 +47,7 @@ public class AssemblyService extends AbstractSpecificationElementService<Assembl
 	
 	@Autowired
 	public AssemblyService(			
-			@Qualifier(value = "AssemblyRepository") JpaRepository<AssemblyEntity, Long> repository,
+			@Qualifier(value = "AssemblyRepository") BaseRepositoryWithSpecification<AssemblyEntity> repository,
 			@Qualifier(value = "AssemblyConverter") IConverter<AssemblyEntity, AssemblyDTO> converter) {
 		this.converter = converter;
 		this.repository = repository;

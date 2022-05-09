@@ -1,5 +1,7 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.Raw.MaterialType;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.DTOFactory.ID
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.MaterialTypeEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/material-type")
 public class MaterialTypeEditController extends AbstractSpecificationElementEditController<MaterialTypeDTO, MaterialTypeEntity>{
 
@@ -21,7 +23,7 @@ public class MaterialTypeEditController extends AbstractSpecificationElementEdit
 	
 	@Autowired
 	public MaterialTypeEditController(
-			@Qualifier(value = "MaterialTypeService") AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity, Long> service,
+			@Qualifier(value = "MaterialTypeService") AbstractSpecificationElementService<MaterialTypeDTO, MaterialTypeEntity> service,
 			@Qualifier(value = "MaterialTypeDTOFactory") IDTOFactory<MaterialTypeDTO> dtoFactory) {
 		
 		super(service, dtoFactory);
@@ -40,5 +42,13 @@ public class MaterialTypeEditController extends AbstractSpecificationElementEdit
 		this.REDIRECT_EDIT_LIST = "redirect:/raw/material-type/edit-list";
 		this.REDIRECT_EDIT_LIST_ACCEPT_DELETE = "redirect:/raw/material-type/edit-list/accept-delete/";
 	}
+
+
+	@Override
+	public String editListPOSTSearch(Map<String, String> searchParams) {
+		// TODO Auto-generated method stub
+		return super.editListPOSTSearch(searchParams);
+	}
+	
 	
 }

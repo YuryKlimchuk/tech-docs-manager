@@ -1,5 +1,7 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.SpecificationElement;
 
+import java.util.Map;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +24,9 @@ public interface ISpecificationElementEditController<DTO> {
 		
 	@PostMapping(value = "/edit-list", params = "btnEdit")
 	public String editListPOSTEdit(@RequestParam(name = "btnEdit", defaultValue = "-1") String strId, RedirectAttributes redirectAttributes);
+	
+	@PostMapping(value = "/edit-list", params = "btnSearch")
+	public String editListPOSTSearch(@RequestParam Map<String, String> searchParams);
 	
 	@GetMapping(value = "/edit-list/{strId}/edit-1")
 	public String editListEdit1GET(@PathVariable("strId") String strId, RedirectAttributes redirectAttributes, Model model);

@@ -9,6 +9,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -88,6 +89,12 @@ public class ProductService implements IProductService {
 	public Iterable<AssemblyDTO> getAssembliesByProductId(long id) {
 		Optional<ProductEntity> entity = productRepository.findById(id);
 		return entity.isPresent() ? assemblyConverter.convertListFromEntityToDto(entity.get().getAssemblies()) : new ArrayList<AssemblyDTO>();
+	}
+
+	@Override
+	public Iterable<ProductDTO> getAll(Specification<Long> specification) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

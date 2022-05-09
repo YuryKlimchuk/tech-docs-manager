@@ -2,7 +2,7 @@ package com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement;
 
 import java.time.LocalDate;
 
-public final class PartDTO extends SpecificationElementDTO{
+public final class PartDTO extends SpecificationElementDTO {
 
 	private String status;
 

@@ -12,14 +12,14 @@ import com.hydroyura.TechDocsManager.Data.DTO.Raw.SortamentDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.Raw.SortamentEntity;
 import com.hydroyura.TechDocsManager.Service.AbstractSpecificationElementService;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/raw/sortament")
 public class SortamentController extends AbstractSpecificationElementController<SortamentDTO, SortamentEntity> {
 
 	@Autowired
 	public SortamentController(
-			@Qualifier(value = "SortamentService") AbstractSpecificationElementService<SortamentDTO, SortamentEntity, Long> service) {
-		super(service);
+			@Qualifier(value = "SortamentService") AbstractSpecificationElementService<SortamentDTO, SortamentEntity> service) {
+		super(service,null);
 	}
 	
 	

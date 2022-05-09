@@ -1,10 +1,6 @@
 package com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.hydroyura.TechDocsManager.Data.DTO.Route.RouteDTO;
 
 public class AssemblyDTO extends SpecificationElementDTO {
 	

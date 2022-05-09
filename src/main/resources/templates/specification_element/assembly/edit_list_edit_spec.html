@@ -4,6 +4,17 @@
 		<meta charset="UTF-8">
 		<title>TechDocsManager</title>
 		<link th:href="@{/styles/style_00.css}" rel="stylesheet" />	
+		<!-- select2 lib -->		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+			    $('.js-select2').select2();
+			});
+		</script>
+		<!-- select2 lib end -->	
 	</head>
 	<body>
 		<div align="center">
@@ -106,7 +117,7 @@
 						<tr>
 							<th th:text="'-'"/>
 							<th colspan="2" align="left">
-								<select th:name="'assemblyAddingId'">
+								<select th:name="'assemblyAddingId'" class="js-select2">
 									<option th:each="item : ${assembliesForAdding}" 
 											th:text="${item.number + ' ' + item.name}" 
 											th:value="${item.id}" />
@@ -145,7 +156,7 @@
 						<tr>
 							<th th:text="'-'"/>
 							<th colspan="2" align="left">
-								<select th:name="'partAddingId'">
+								<select th:name="'partAddingId'" class="js-select2">
 									<option th:each="item : ${partsForAdding}" 
 											th:text="${item.number + ' ' + item.name}" 
 											th:value="${item.id}" />
@@ -184,9 +195,9 @@
 						<tr>
 							<th th:text="'-'"/>
 							<th colspan="2" align="left">
-								<select th:name="'standartAddingId'">
+								<select th:name="'standartAddingId'" class="js-select2">
 									<option th:each="item : ${standartsForAdding}" 
-											th:text="${item.number + ' ' + item.name}" 
+											th:text="${item.name + ' ' + item.standart + ' ' + item.number}" 
 											th:value="${item.id}" />
 								</select>
 							</th>
@@ -201,8 +212,8 @@
 					<tbody>
 						<tr th:each="item, iterator : ${standarts}">
 							<td th:text="${iterator.count}" />
-							<td th:text="${item.item.number}" />
-							<td th:text="${item.item.name}" />
+							<td th:text="''" />
+							<td th:text="${item.item.name + ' ' + item.item.standart + ' ' + item.item.number}" />
 							<td th:text="${item.count}" />
 							<td align="center">
 								<button th:name="'btnDeleteStandart'" th:value="${item.id}">Удалить</button>
@@ -223,7 +234,7 @@
 						<tr>
 							<th th:text="'-'"/>
 							<th colspan="2" align="left">
-								<select th:name="'vzkAddingId'">
+								<select th:name="'vzkAddingId'" class="js-select2">
 									<option th:each="item : ${vzksForAdding}" 
 											th:text="${item.number + ' ' + item.name}" 
 											th:value="${item.id}" />
@@ -262,7 +273,7 @@
 						<tr>
 							<th th:text="'-'"/>
 							<th colspan="2" align="left">
-								<select th:name="'buyAddingId'">
+								<select th:name="'buyAddingId'" class="js-select2">
 									<option th:each="item : ${buysForAdding}" 
 											th:text="${item.number + ' ' + item.name}" 
 											th:value="${item.id}" />

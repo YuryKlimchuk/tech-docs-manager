@@ -39,7 +39,7 @@ public class ProductEditController extends AbstractController {
 	private CustomerService customerService;
 	
 	@Autowired @Qualifier(value = "AssemblyService")
-	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity, Long> assemblyService;
+	private AbstractSpecificationElementService<AssemblyDTO, AssemblyEntity> assemblyService;
 	
 	
 	private ProductDTO dto = null;

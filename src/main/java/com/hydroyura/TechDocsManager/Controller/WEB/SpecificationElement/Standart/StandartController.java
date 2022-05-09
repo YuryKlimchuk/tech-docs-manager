@@ -18,8 +18,8 @@ public class StandartController extends AbstractSpecificationElementController<S
 
 	
 	@Autowired
-	public StandartController(@Qualifier(value = "StandartService") AbstractSpecificationElementService<StandartDTO, StandartEntity, Long> service) {
-		super(service);
+	public StandartController(@Qualifier(value = "StandartService") AbstractSpecificationElementService<StandartDTO, StandartEntity> service) {
+		super(service, null);
 	}
 	
 	@PostConstruct
