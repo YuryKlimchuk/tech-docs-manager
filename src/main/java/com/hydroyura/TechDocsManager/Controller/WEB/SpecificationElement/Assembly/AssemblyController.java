@@ -119,7 +119,7 @@ public class AssemblyController extends AbstractSpecificationElementController<A
 		Optional<AssemblyDTO> dto = service.getById(IDValidator.convertFromStringToLong(strId));
 		if(dto.isEmpty()) return "redirect:/specification-element/assembly/show-list";
 		
-		Map<SpecificationRowType, Map<ISpecificationRow, List<Long>>> assemblyMap = ICompositeUtilities.compressMap(compositeCreator.createChildren(dto.get(), -1L).getValue());
+		Map<SpecificationRowType, Map<ISpecificationRow, List<Long>>> assemblyMap = ICompositeUtilities.compressMap(compositeCreator.createChildren(dto.get(), 1L).getValue());
 		
 		model.addAttribute("dto", dto.get());
 

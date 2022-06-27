@@ -33,6 +33,15 @@ public class PartRepositoryTest {
 		assertEquals(5, partRepository.findAll().size());
 	}
 	
+	@Test
+	void updateTest() {
+		PartEntity entity = partRepository.save(new PartEntity(0, "PART_NAME_04", "PART_NUMBER_05", null, null, "STATUS_02"));
+		long id = entity.getId();
+		entity.setNumber("PART_NUMBER_06");
+		PartEntity updateEntity = partRepository.save(entity);
+		assertEquals(id, updateEntity.getId());
+	}
+	
 	
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.hydroyura.TechDocsManager.Data.Converters.IConverter;
 import com.hydroyura.TechDocsManager.Data.Converters.SpecificationElement.AssemblyRate.AbstractAssemblyRateConverter;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyDTO;
+import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.PartDTO;
 import com.hydroyura.TechDocsManager.Data.DTO.SpecificationElement.AssemblyRate.BaseAssemblyRateDTO;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.AssemblyRate.AbstractAssemblyRateEntity;
@@ -112,6 +113,13 @@ public abstract class AbstractAssemblyRateService<E, D> implements IAssemblyRate
 		
 		return false;
 	}
+
+	@Override
+	public Iterable<BaseAssemblyRateDTO<D>> getAll() {
+		return converter.convertListFromEntityToDto(baseRepository.findAll());
+	}
+
+
 	
 
 

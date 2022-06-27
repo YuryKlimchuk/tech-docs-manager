@@ -22,7 +22,7 @@ public class AssemblyPartRateService extends AbstractAssemblyRateService<PartEnt
 			@Qualifier(value = "AssemblyPartRateRepository") BaseAssemblyRateRepository<PartEntity> repository,
 			@Qualifier(value = "AssemblyPartRateBaseRepository") JpaRepository<AssemblyPartRateEntity, Long> baseRepository) {
 		
-		
+		//AssemblyPartRateRepository
 		
 		
 		this.converter = converter;

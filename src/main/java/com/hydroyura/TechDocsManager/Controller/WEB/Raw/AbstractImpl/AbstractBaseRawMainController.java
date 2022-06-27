@@ -1,8 +1,9 @@
 package com.hydroyura.TechDocsManager.Controller.WEB.Raw.AbstractImpl;
 
+import com.hydroyura.TechDocsManager.Controller.WEB.AbstractController;
 import com.hydroyura.TechDocsManager.Controller.WEB.Raw.IBaseRawMainController;
 
-public class AbstractBaseRawMainController implements IBaseRawMainController {
+public class AbstractBaseRawMainController extends AbstractController implements IBaseRawMainController {
 	
 	private final String PATH = "/raw/";
 	private final String HTML_MAIN = "main";
