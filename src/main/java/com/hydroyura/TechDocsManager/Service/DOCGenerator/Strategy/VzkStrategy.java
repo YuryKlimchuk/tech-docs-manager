@@ -22,6 +22,8 @@ public class VzkStrategy implements IStrategy {
 			rowsContext[3] = String.valueOf(count);
 			rowsContext[4] = "";
 			
+			System.out.println(rowsContext[1] + " " + rowsContext[2]);
+			
 		} catch (ClassCastException e) {
 			System.out.println("Ошибка при приведении типов");
 			e.printStackTrace();

@@ -17,7 +17,6 @@ import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.BuyEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.PartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.StandartEntity;
 import com.hydroyura.TechDocsManager.Data.Entity.SpecificationElement.VzkEntity;
-import com.hydroyura.TechDocsManager.Service.Composite.Elements.ISpecificationRow;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.SpecificationRowAssembly;
 import com.hydroyura.TechDocsManager.Service.Composite.Elements.SpecificationRowPart;
 import com.hydroyura.TechDocsManager.Service.Route.Impl.RouteService;

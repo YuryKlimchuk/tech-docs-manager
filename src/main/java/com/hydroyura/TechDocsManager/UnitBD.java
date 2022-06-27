@@ -81,17 +81,6 @@ public class UnitBD {
 		
 	}
 	
-	
-	//@PostConstruct
-	private void testingFeatures() {
-		Map<String, String> map = new HashMap<>();
-		System.out.println(" ДО добавление элементов = " + map.entrySet() == null);
-		map.put("LJ", "dsd");
-		map.put("LJ323", "dsd2");
-		map.put("L2J", "dsd3");
-		System.out.println(" ДО добавление элементов = " + map.entrySet() == null);
-	}
-	
 	@PostConstruct
 	private void initMaterialType() {
 		//materialTypeService.save(new MaterialTypeDTO(0, "Сталь"));
@@ -139,8 +128,14 @@ public class UnitBD {
 		assemblyService.save(new AssemblyDTO("BPG301-00000-01 СБ", "Блок питания", "Серия"));
 		assemblyService.save(new AssemblyDTO("BPG301-00000-02 СБ", "Блок питания", "Серия"));
 		
+
 		
 		
+		partService.save(new PartDTO(0, "KPV03/100-00001", "Клапан", "Серия"));
+		partService.save(new PartDTO(0, "KPV03/100-00002", "Корпус", "Серия"));
+		partService.save(new PartDTO(0, "KPV03/100-00003", "Пружина", "Серия"));
+		partService.save(new PartDTO(0, "KPV03/100-00004", "Пробка", "Серия"));
+
 		partService.save(new PartDTO(0, "BPG000-00001", "Корпус", "Серия"));
 		partService.save(new PartDTO(0, "BPG000-00002", "Золотник", "Серия"));
 		partService.save(new PartDTO(0, "BPG000-00003", "Корпус клапана", "Серия"));

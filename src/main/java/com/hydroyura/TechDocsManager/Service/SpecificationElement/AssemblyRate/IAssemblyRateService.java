@@ -12,5 +12,6 @@ public interface IAssemblyRateService<E, D> {
 	public boolean deleteById(long id);
 	public boolean deleteByAssembly(AssemblyDTO dto);
 	public boolean copy(AssemblyDTO from, AssemblyDTO to);
+	public Iterable<BaseAssemblyRateDTO<D>> getAll();
 
 }

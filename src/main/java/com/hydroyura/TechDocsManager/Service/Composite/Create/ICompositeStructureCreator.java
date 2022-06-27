@@ -43,7 +43,7 @@ public interface ICompositeStructureCreator {
 						raw.getId(), 
 						raw.getName() + " " + raw.getNumber(),
 						count, 
-						SpecificationRowType.VZK, raw.getName(), raw.getName());
+						SpecificationRowType.VZK, raw.getName(), raw.getNumber());
 	}
 	
 	public static ISpecificationRow create(BuyDTO raw, long count) {
